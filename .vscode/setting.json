@@ -1,0 +1,28 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.semi": true,
+  "prettier.trailingComma": "all",
+  "prettier.printWidth": 80,
+  "prettier.arrowParens": "always",
+  "prettier.bracketSpacing": true,
+  "prettier.jsxBracketSameLine": false,
+  "files.eol": "\n",
+  "prettier.endOfLine": "lf",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always"
+}
