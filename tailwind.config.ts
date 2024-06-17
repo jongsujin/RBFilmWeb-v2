@@ -20,6 +20,7 @@ const config: Config = {
         pre: ["Pretendard", "sans-serif"],
       },
       fontSize: {
+        mainContent: "55px",
         headline1: "22px",
         headline2: "20px",
         headline3: "18px",
