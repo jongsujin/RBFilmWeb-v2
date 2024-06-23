@@ -40,7 +40,7 @@ export default function Home() {
             <p className="text-mainContent font-extrabold">R.B. FILM</p>
           </div>
         </section>
-        <section className="relative w-full h-[680px] mt-[4.5rem]">
+        <section className="relative w-full mt-[4.5rem]">
           <Image
             src="/bg.svg"
             alt="background"
@@ -50,8 +50,8 @@ export default function Home() {
             style={{ width: "100%", height: "auto" }}
             className="absolute"
           />
-          <div className="absolute top-24 left-0 right-0 flex flex-col justify-center items-center text-white">
-            <div className="border border-white flex  items-center justify-center gap-2 mx-4 text-black font-pre text-lg font-medium leading-3">
+          <div className="mx-auto flex flex-col justify-center items-center text-white relative">
+            <div className="w-[90%]  pt-10 flex flex-row items-center justify-around text-black font-pre text-lg font-medium leading-3 xs:text-m xs:gap-1">
               <button
                 type="button"
                 className="border border-primary rounded-2xl bg-primary leading-3 p-2"
@@ -84,14 +84,45 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="absolute top-40 left-0 right-0 flex flex-row justify-center w-[90%] h-60 mx-auto">
-            <Image
-              src="/home01.svg"
-              alt="남의 것"
-              fill
-              className="max-w-full h-auto"
-            />
+          <div className="w-[90%] mx-auto mt-8">
+            <div className="relative">
+              <Image
+                src="/home01.svg"
+                alt="남의 것"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto" }}
+              />
+              <div className="absolute left-4 bottom-3  text-left text-white">
+                <p className="font-pre text-lg">
+                  <span className="text-imageTitle font-medium">
+                    &quot;남의 것&quot;
+                  </span>
+                  이라는 생각이 들 때,
+                </p>
+                <p className="font-pre pl-1 font-semibold">영상은</p>
+                <p className="font-pre pl-1 font-semibold">
+                  방향성을 잃어버립니다.
+                </p>
+              </div>
+            </div>
           </div>
+        </section>
+        <section className="relative w-full mt-6 px-4 text-primary text-left">
+          <div className="w-full border-t border-borderBlack my-6" />
+          <h2 className="text-headline1 font-bold text-black">ABOUT ME</h2>
+          <p className="mt-4 text-sm text-black">
+            어떤 종류의 프로젝트라도 내 영상을 제작한다는 마음으로 함께하고
+            있으며
+          </p>
+          <p className="mt-3 text-sm whitespace-pre-line text-black font-normal">
+            클라이언트의 니즈는 물론, {"\n"}알비필름의 새로운 시선을 더해 더
+            나은 방향을 고민하고 있습니다.
+          </p>
+          <p className="mt-3  text-sm font-bold text-black font-roboto">
+            한 번의 비즈니스가 아닌 지속적인 파트너로 함께 성장하기를 바랍니다.
+          </p>
         </section>
       </main>
     </div>
