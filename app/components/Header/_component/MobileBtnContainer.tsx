@@ -1,13 +1,14 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import Button from "../../Button/Button";
 
 export default function MobileBtnContainer() {
-  const onClickBtn = () => {
-    // eslint-disable-next-line no-alert
-    alert("버튼2 클릭");
+  const router = useRouter();
+  const onClickMovePageBtn = (url: string) => {
+    router.push(url);
   };
   return (
     <div className="flex flex-row border-t border-white">
@@ -18,7 +19,7 @@ export default function MobileBtnContainer() {
             height="h-8"
             buttonType="button"
             content="회사 소개서"
-            onClick={onClickBtn}
+            onClick={() => onClickMovePageBtn("/contact")}
             bg="bg-black"
             br="rounded-[18px]"
             borderColor="border-white"
@@ -32,7 +33,7 @@ export default function MobileBtnContainer() {
             height="h-8"
             buttonType="button"
             content="견적 문의"
-            onClick={onClickBtn}
+            onClick={() => onClickMovePageBtn("/contact")}
             bg="bg-black"
             br="rounded-[18px]"
             borderColor="border-white"

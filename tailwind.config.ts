@@ -16,6 +16,7 @@ const config: Config = {
       white: "#ffffff",
       gray: "#dbdbdb",
       primary: "#e9d1ad",
+      secondary: "#DACCBA",
     },
     extend: {
       fontFamily: {
