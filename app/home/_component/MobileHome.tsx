@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import fetchMainfilmData from "@/api/fetchMainFilmData";
-import MobileHeader from "../../Header/MobileHeader";
+import MobileHeader from "@/app/components/Header/MobileHeader";
 import Carousel from "./Carousel";
 import ClienItem from "./ClientItem";
 import MainFilm from "./MainFilm";
