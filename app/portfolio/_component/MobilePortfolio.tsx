@@ -1,6 +1,7 @@
 import Image from "next/image";
 import MobileHeader from "@/components/Header/MobileHeader";
 import PortfolioTitle from "@/data/PortfolioTitle";
+import Footer from "@/components/Footer/Footer";
 
 export default function MobilePortfolio() {
   return (
@@ -86,12 +87,23 @@ export default function MobilePortfolio() {
             ))}
         </div>
         <div className="w-[90%] mt-14 mx-auto grid grid-cols-2 gap-8">
-          <div className="border border-primary">하이</div>
-          <div className="border border-primary">하이</div>
-          <div className="border border-primary">하이</div>
-          <div className="border border-primary">하이</div>
+          <div className="border border-primary relative w-full h-0 pb-[56.25%] overflow-hidden">
+            <div className="absolute inset-0 bg-gray">하이</div>
+          </div>
+          <div className="border border-primary relative w-full h-0 pb-[56.25%] overflow-hidden">
+            <div className="absolute inset-0 bg-gray">하이</div>
+          </div>
+          <div className="border border-primary relative w-full h-0 pb-[56.25%] overflow-hidden">
+            <div className="absolute inset-0 bg-gray">하이</div>
+          </div>
+          <div className="border border-primary relative w-full h-0 pb-[56.25%] overflow-hidden">
+            <div className="absolute inset-0 bg-gray">하이</div>
+          </div>
         </div>
       </section>
+      <footer className="mt-44">
+        <Footer />
+      </footer>
     </div>
   );
 }
