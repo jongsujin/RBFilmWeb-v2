@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
-import TanstackQueryProvider from "./components/Provider/Provider";
+import TanstackQueryProvider from "../components/Provider/Provider";
 
 export const metadata: Metadata = {
   title: "RBFilm",

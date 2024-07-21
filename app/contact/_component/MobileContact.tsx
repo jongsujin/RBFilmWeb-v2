@@ -1,4 +1,4 @@
-import MobileHeader from "@/app/components/Header/MobileHeader";
+import MobileHeader from "@/components/Header/MobileHeader";
 import Image from "next/image";
 
 export default function MobileContact() {
