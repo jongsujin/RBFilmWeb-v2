@@ -2,38 +2,37 @@
 
 import Image from "next/image";
 import MobileHeader from "@/components/Header/MobileHeader";
+import ReactPlayer from "react-player";
 import PortfolioTitle from "@/data/PortfolioTitle";
 import Footer from "@/components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
-import fetchPortfolioTheme from "@/api/fetchPortfolioTheme";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { TbPlayerPlayFilled } from "react-icons/tb";
+import fetchPortfolioItem from "@/api/fetchPortfolioItem";
+import Link from "next/link";
 
-export default function MobilePortfolio() {
-  const router = useRouter();
-  const [selectedTheme, setSelectedTheme] = useState("Interview");
-  const { data, isLoading } = useQuery({
-    queryKey: ["fetchPortfolioTheme", selectedTheme],
-    queryFn: () => fetchPortfolioTheme(selectedTheme),
+interface PortfolioItemProps {
+  id: number;
+  first_by?: string;
+  first_content?: string;
+  image_url?: string;
+  part?: string;
+  second_by?: string;
+  second_content?: string;
+  sub_title?: string;
+  title?: string;
+  url?: string;
+}
+export default function MobileItemPortFolio({
+  params,
+}: {
+  params: { id: number };
+}) {
+  console.log("id : ", params.id);
+  const { data, isLoading } = useQuery<PortfolioItemProps>({
+    queryKey: ["fetchPortfolioItem", params.id],
+    queryFn: () => fetchPortfolioItem({ THEME: "Interview", id: params.id }),
   });
+  console.log("item data : ", data);
 
-  const onClickTheme = (theme: string) => {
-    setSelectedTheme(theme);
-  };
-  const onClickItem = (id: number) => {
-    router.push(`/portfolio/item/${id}`);
-  };
-
-  const handleKeyDown = (
-    event: React.KeyboardEvent<HTMLDivElement>,
-    id: number,
-  ) => {
-    if (event.key === "Enter" || event.key === " ") {
-      onClickItem(id);
-    }
-  };
-  console.log(data);
   if (isLoading) return <div>Loading...</div>;
   return (
     <div>
@@ -55,7 +54,7 @@ export default function MobilePortfolio() {
                   <button
                     key={item}
                     type="button"
-                    className={`cursor-pointer border ${
+                    className={`border ${
                       index === 2 ? "border-primary bg-primary" : "border-black"
                     } rounded-2xl p-2 whitespace-nowrap`}
                   >
@@ -92,12 +91,14 @@ export default function MobilePortfolio() {
                       제작 방향 상담이 가능합니다.
                     </p>
                   </div>
-                  <button
-                    className="cursor-pointer absolute bottom-2 right-2 border border-white rounded-2xl text-sm text-white px-2 py-1"
-                    type="button"
-                  >
-                    문의하기
-                  </button>
+                  <Link href="/contact">
+                    <button
+                      className="cursor-pointer absolute bottom-2 right-2 border border-white rounded-2xl text-sm text-white px-2 py-1"
+                      type="button"
+                    >
+                      문의하기
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -111,44 +112,53 @@ export default function MobilePortfolio() {
               <button
                 key={title.id}
                 type="button"
-                className={`cursor-pointer border ${
-                  selectedTheme === title.title
-                    ? "border-primary bg-primary"
-                    : "border-primary bg-black text-white"
-                } rounded-2xl p-2 whitespace-nowrap`}
-                onClick={() => onClickTheme(title.title)}
+                className="border border-primary flex-shrink-0 w-auto font-pre text-white text-body rounded-2xl p-2 whitespace-nowrap"
               >
                 {title.title}
               </button>
             ))}
         </div>
-        <div className="relative w-[90%] mt-14 mx-auto grid grid-cols-2 gap-8">
-          {data &&
-            data.DATA &&
-            data.DATA.map((item: any) => (
-              <div
-                key={item.id}
-                className="border border-primary rounded relative w-full h-0 pb-[56.25%] overflow-hidden"
-                onClick={() => onClickItem(item.id)}
-                onKeyDown={(event) => handleKeyDown(event, item.id)}
-                role="button"
-                tabIndex={0}
-              >
-                <Image
-                  key={item.id}
-                  className="absolute inset-0 w-full h-full"
-                  src={item.image_url}
-                  alt="portfolio url"
-                  width={100}
-                  height={50}
-                />
-                <div className="absolute inset-0 flex justify-center items-center">
-                  <div className="cursor-pointer w-8 h-8 bg-white bg-opacity-75 rounded-full flex justify-center items-center border-none">
-                    <TbPlayerPlayFilled className="text-black" />
-                  </div>
-                </div>
-              </div>
-            ))}
+      </section>
+      <section className="w-[90%] text-white mx-auto">
+        <div className="border border-primary relative w-full pb-[56.25%] mt-14">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <ReactPlayer url={data?.url} width="100%" height="100%" />
+          </div>
+        </div>
+        <div className="font-pre text-center mt-10">
+          <p className="text-headline3 font-semibold">{data?.first_content}</p>
+          <p className="text-lg font-bold">{data?.second_content}</p>
+        </div>
+        <div className="font-pre mt-8">
+          <div className="flex flex-row justify-start items-center mb-2 gap-2">
+            <div className="2-14 border border-primary rounded-2xl text-m font-semibold px-3 py-1 text-center flex-shrink-0">
+              고객사
+            </div>
+            <p className="text-lg font-medium flex-grow">경찰청</p>
+          </div>
+          <div className="flex flex-row justify-start items-center">
+            <div className="w-14 border border-primary rounded-2xl text-m font-semibold px-3 py-1 text-center flex-shrink-0">
+              장비
+            </div>
+            <p className=" text-lg font-medium flex-grow px-3">
+              {data?.first_by}
+            </p>
+          </div>
+        </div>
+        <div className="mt-14 flex flex-col gap-5">
+          <div className="border border-white w-full pb-[56.25%] bg-gray" />
+          <div className="border border-white w-full pb-[56.25%] bg-gray" />
+        </div>
+        <div className="mt-7 w-full flex flex-row justify-end">
+          <div />
+          <Link href="/portfolio">
+            <button
+              type="button"
+              className="cursor-pointer border border-primary rounded-2xl font-pre text-primary text-m font-medium px-2 py-1"
+            >
+              뒤로 가기
+            </button>
+          </Link>
         </div>
       </section>
       <footer className="mt-44">
