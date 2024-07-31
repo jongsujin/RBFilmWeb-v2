@@ -9,6 +9,11 @@ const config: Config = {
   theme: {
     screens: {
       xs: "375px",
+      md: "720px",
+      lg: "1024px",
+      xl: "1536px",
+      xxl: "1920px",
+      maxl: "2560px",
     },
     colors: {
       black: "#222222",
