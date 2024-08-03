@@ -1,3 +1,4 @@
+import DeskTopFooter from "@/components/Footer/DeskTopFooter";
 import Footer from "../../components/Footer/Footer";
 import DeskTopContact from "./_component/DeskTopContact";
 import MobileContact from "./_component/MobileContact";
@@ -11,7 +12,12 @@ export default function Contact() {
       <div className="hidden lg:block">
         <DeskTopContact />
       </div>
-      <Footer />;
+      <div className="block lg:hidden">
+        <Footer />
+      </div>
+      <div className="hidden lg:block lg:mt-72">
+        <DeskTopFooter />
+      </div>
     </>
   );
 }

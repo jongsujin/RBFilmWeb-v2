@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import fetchMainfilmData from "@/api/fetchMainFilmData";
 import DeskTopHeader from "@/components/Header/DeskTopHeader";
+import DeskTopBtnContainer from "@/components/Header/_component/DeskTopBtnContainer";
 import { ClientDataProps, MainFilmDataProps } from "./MobileHome";
 import MainFilm from "./MainFilm";
 import Carousel from "./Carousel";
@@ -29,6 +30,7 @@ export default function DeskTopHome() {
   return (
     <div className="w-full flex flex-col justify-center items-center text-center">
       <DeskTopHeader />
+      <DeskTopBtnContainer />
       <main className="w-full">
         <div className="max-w-[80%] mx-auto">
           {mainFilmData && <MainFilm url={mainFilmData.url} />}
@@ -60,18 +62,23 @@ export default function DeskTopHome() {
               objectFit="cover"
             />
             <div className="absolute top-0 right-0 left-0 bottom-10 flex justify-center items-center">
-              <div className="w-[50%] flex flex-col gap-2">
+              <div className="w-[60%] flex flex-col gap-2">
                 <div className="flex flex-row justify-center gap-2">
-                  <div className="w-[40%] h-64 flex flex-col justify-center text-center items-center align-middle border border-white">
-                    <p className="text-white">
-                      <span>&quot;남의 것&quot;</span>이라는 생각이 들 때
+                  <div className="w-[40%] h-72 flex flex-col justify-center text-center items-center align-middle border border-white">
+                    <p className="text-white font-pre font-semibold">
+                      <span className="text-headline2">
+                        &quot;남의 것&quot;
+                      </span>
+                      이라는 생각이 들 때
                     </p>
-                    <p className="text-white">영상은 방향성을 잃어버립니다.</p>
+                    <p className="font-pre font-semibold text-headline2 text-white">
+                      영상은 방향성을 잃어버립니다.
+                    </p>
                   </div>
-                  <div className="relative w-[60%] h-64">
+                  <div className="relative w-[60%] h-72">
                     <Image
                       className="absolute inset-0 border border-white"
-                      src="/contact01.svg"
+                      src="/deskTopHome01.svg"
                       alt="image"
                       layout="fill"
                       objectFit="cover"
@@ -79,22 +86,50 @@ export default function DeskTopHome() {
                   </div>
                 </div>
                 <div className="flex flex-row justify-center gap-2">
-                  <div className="relative w-[45%] h-64">
+                  <div className="relative w-[45%] h-72">
                     <Image
                       className="absolute inset-0 border border-white"
-                      src="/contact01.svg"
+                      src="/deskTopHome02.svg"
                       alt="image"
                       layout="fill"
                       objectFit="cover"
                     />
                   </div>
-                  <div className="w-[55%] h-64 bg-white" />
+                  <div className="w-[55%] h-72 border border-white rounded-md shadow-2xl">
+                    <div className="flex flex-col h-full ml-3 text-white text-left font-pre font-bold">
+                      <p className="mt-8 text-[24px]">ABOUT ME</p>
+                      <div className="mt-10 flex flex-col gap-1">
+                        <p className="text-m font-roboto font-medium">
+                          어떤 종류의 프로젝트라도 내 영상을 제작한다는 마음으로
+                          함께하고 있으며
+                        </p>
+                        <p className="text-m font-roboto font-medium">
+                          클라이언트의 니즈는 물론,
+                        </p>
+                        <p className="text-m font-roboto font-medium">
+                          알비필름의 새로운 시선을 더해 더 나은 방향을 고민하고
+                          있습니다.
+                        </p>
+                        <p className="font-roboto font-semibold text-lg">
+                          한 번의 비즈니스가 아닌 지속적인 파트너로 함께
+                          성장하기를 바랍니다.
+                        </p>
+                        <div className="flex flex-row justify-between mt-10 mr-6">
+                          <div />
+                          <div className="text-m font-roboto font-medium">
+                            <p>알비필름 대표</p>
+                            <p>최정훈 드림</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section className="w-[50%] mt-32 mx-auto">
+        <section className="w-[60%] mt-32 mx-auto">
           <h1 className="mb-8 text-5xl text-left font-extrabold text-primary font-roboto">
             PROJECT
           </h1>
@@ -167,99 +202,119 @@ export default function DeskTopHome() {
             </div>
           </div>
         </section>
-        <section className="w-[50%]  mx-auto relative flex justify-center mt-36 align-middle items-center">
+        <section className="w-[60%]  mx-auto relative flex justify-center mt-36 align-middle items-center">
           <div className="relative flex flex-col justify-center bg-black px-2 text-primary text-[55px] font-extrabold">
-            <p> Equipments</p>
+            <p>Equipments</p>
           </div>
         </section>
-        <section className="w-[50%] mx-auto flex flex-col justify-center gap-8 mt-16">
-          <div className="relative w-full">
+        <section className="w-[65%] h-full mx-auto flex flex-col justify-center gap-8 mt-16">
+          <div className="relative w-[90%] h-0 pb-[25.15%] mx-auto border border-black overflow-hidden">
             <Image
-              className="rounded-lg shadow-sm opacity-55"
+              className="absolute inset-0 w-full h-full  shadow-2xl opacity-55"
               src="/redkomodo.svg"
               alt="redkomodo"
-              layout="responsive"
-              width={440}
-              height={105}
+              layout="fill"
+              objectFit="cover"
             />
-            <p className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-headline2">
+            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-[24px]">
               Red Komodo 6K
             </p>
-            <div className="absolute bottom-2 right-2 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-sm">
-              <p> +Canon RF 28-70mm</p>
-              <p>+ DJI RS4 Pro, Tilta Ring grip</p>
+            <div className="absolute bottom-14 right-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-body">
+              <div className="flex flex-row gap-2">
+                <Image src="/minusBtn.svg" alt="minus" width={13} height={13} />
+                <p>Canon RF 28-70mm</p>
+              </div>
+              <div className="flex flex-row gap-2">
+                <Image src="/minusBtn.svg" alt="minus" width={13} height={13} />
+                <p>DJI RS4 Pro, Tilta Ring grip</p>
+              </div>
             </div>
           </div>
-          <div className="relative w-full">
+          <div className="relative w-[90%] mx-auto pb-[25.15%]">
             <Image
-              className="rounded-lg shadow-sm opacity-55"
+              className="shadow-2xl opacity-55"
               src="/ronin4d.svg"
               alt="ronin4d"
-              width={440}
-              height={105}
-              layout="responsive"
+              layout="fill"
+              objectFit="cover"
             />
-            <p className="absolute top-1/2 right-1/4 transform translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-headline2">
+            <p className="absolute top-1/2 right-32 transform translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-[24px]">
               Ronin 4D 6K
             </p>
-            <div className="absolute bottom-4 left-4 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-sm">
-              <p>+ Sony 16-35 GM</p>
-              <p>+ Sony 24-70 GM2</p>
+            <div className="absolute bottom-14 left-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-body">
+              <div className="flex flex-row gap-2">
+                <Image src="/plusBtn.svg" alt="minus" width={13} height={13} />
+                <p>Canon RF 28-70mm</p>
+              </div>
+              <div className="flex flex-row gap-2">
+                <Image src="/plusBtn.svg" alt="minus" width={13} height={13} />
+                <p>DJI RS4 Pro, Tilta Ring grip</p>
+              </div>
             </div>
           </div>
-          <div className="relative w-full">
+          <div className="relative w-[90%] mx-auto pb-[25.15%]">
             <Image
-              className="rounded-lg shadow-sm"
+              className="shadow-2xl opacity-40"
               src="/sonyfx9.svg"
               alt="sonyfx9"
-              width={440}
-              height={105}
-              layout="responsive"
+              layout="fill"
+              objectFit="cover"
             />
-            <p className="absolute top-1/2 left-[16%] transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-headline2">
+            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-[24px]">
               Sony FX9
             </p>
-            <div className="absolute bottom-4 right-6 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-sm">
-              <p>+ Sony 70-200 GM2</p>
-              <p>+ Crane 3S</p>
+            <div className="absolute bottom-14 right-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-body">
+              <div className="flex flex-row gap-2">
+                <Image src="/minusBtn.svg" alt="minus" width={13} height={13} />
+                <p>Sony 70-200 GM2</p>
+              </div>
+              <div className="flex flex-row gap-2">
+                <Image src="/minusBtn.svg" alt="minus" width={13} height={13} />
+                <p>Crane 3S</p>
+              </div>
             </div>
           </div>
-          <div className="relative w-full">
+          <div className="relative w-[90%] h-full mx-auto pb-[25.15%]">
             <Image
-              className="rounded-lg shadow-sm opacity-40"
+              className="shadow-2xl opacity-50"
               src="/sonya7s3.svg"
-              alt="sonya7s3"
-              width={440}
-              height={105}
-              layout="responsive"
+              alt="magic3"
+              layout="fill"
+              objectFit="cover"
             />
-            <div className="absolute top-1/2 right-1/4 transform translate-x-1/2 -translate-y-1/2 text-white text-right font-robo font-bold text-headline2">
+            <div className="absolute text-end top-1/2 right-32 transform translate-x-1/2 -translate-y-1/2 text-white  font-robo font-bold text-[24px]">
               <p>Sony A7S</p>
               <p>Sony A1</p>
             </div>
-            <div className="absolute bottom-4 left-4 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-sm">
-              <p>+ Sony 50 GM</p>
-              <p>+ Sony 24-105 G</p>
+            <div className="absolute bottom-14 left-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-body">
+              <div className="flex flex-row gap-2">
+                <Image src="/plusBtn.svg" alt="minus" width={13} height={13} />
+                <p>Sony 50 GM</p>
+              </div>
+              <div className="flex flex-row gap-2">
+                <Image src="/plusBtn.svg" alt="minus" width={13} height={13} />
+                <p>Sony 24-105 G</p>
+              </div>
             </div>
           </div>
-          <div className="relative w-full">
+          <div className="relative w-[90%] mx-auto pb-[25.15%] border border-black shadow-2xl">
             <Image
-              className="rounded-lg shadow-sm opacity-50"
+              className="shadow-2xl opacity-50"
               src="/magic3.svg"
               alt="magic3"
-              width={440}
-              height={105}
-              layout="responsive"
+              layout="fill"
+              objectFit="cover"
             />
-            <p className="absolute top-1/2 left-[16%] transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-headline2">
+            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-[24px]">
               Mavic 3
             </p>
           </div>
         </section>
-        <section className="max-w-[50%] mx-auto mt-36">
+
+        <section className="max-w-[60%] mx-auto mt-36">
           <div className="flex flex-col">
-            <div className="mx-auto">
-              <div className="flex items-baseline">
+            <div className="mx-auto text-center">
+              <div className="flex justify-center items-baseline">
                 <p className="text-primary font-extrabold text-[35px]">
                   R.B.FILM
                 </p>
@@ -292,7 +347,7 @@ export default function DeskTopHome() {
             </div>
           </div>
         </section>
-        <section className="w-[50%] mx-auto mt-32">
+        <section className="w-[60%] mx-auto mt-32">
           <p className="text-primary text-[55px] font-extrabold">Clients</p>
 
           <div className="mt-16 mx-2 grid grid-cols-5">
