@@ -5,7 +5,7 @@ export default function DeskTopContact() {
   return (
     <div className="w-full flex flex-col justify-center items-start text-center">
       <DeskTopHeader />
-      <section className="w-full mt-32">
+      <section className="w-full">
         <div className="relative w-full pb-[41.67%]">
           <Image
             src="/deskTopBg.svg"
