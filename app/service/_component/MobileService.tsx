@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer/Footer";
+import MobileHeader from "@/components/Header/MobileHeader";
 import ServiceImages from "@/data/ServiceImages";
 import Image from "next/image";
 
@@ -6,6 +7,7 @@ export default function MobileService() {
   return (
     <div>
       <section className="relative w-full mt-10">
+        <MobileHeader />
         <div className="w-full h-auto relative">
           <Image
             src="/bg.svg"

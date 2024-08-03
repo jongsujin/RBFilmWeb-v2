@@ -8,17 +8,17 @@ import Carousel from "./Carousel";
 import ClienItem from "./ClientItem";
 import MainFilm from "./MainFilm";
 
-interface MainFilmDataProps {
+export interface MainFilmDataProps {
   THEME: string;
   url: string;
 }
 
-interface ClientItemProps {
+export interface ClientItemProps {
   title: string;
   image_url: string;
   id: number;
 }
-interface ClientDataProps {
+export interface ClientDataProps {
   THEME: string;
   DATA: ClientItemProps[];
 }
