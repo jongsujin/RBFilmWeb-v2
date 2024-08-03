@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer/Footer";
 import MobileHeader from "@/components/Header/MobileHeader";
-import ServiceImages from "@/data/ServiceImages";
+import { ServiceImages } from "@/data/ServiceImages";
 import Image from "next/image";
 
 export default function MobileService() {
