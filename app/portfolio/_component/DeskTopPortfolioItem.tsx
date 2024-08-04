@@ -1,38 +1,35 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import DeskTopBtnContainer from "@/components/Header/_component/DeskTopBtnContainer";
-import DeskTopHeader from "@/components/Header/DeskTopHeader";
-import { useRouter } from "next/navigation";
-import fetchPortfolioTheme from "@/api/fetchPortfolioTheme";
+import fetchPortfolioItem from "@/api/fetchPortfolioItem";
 import { useQuery } from "@tanstack/react-query";
-import { TbPlayerPlayFilled } from "react-icons/tb";
+import DeskTopHeader from "@/components/Header/DeskTopHeader";
+import DeskTopBtnContainer from "@/components/Header/_component/DeskTopBtnContainer";
 
-export default function DeskTopPortfolio() {
-  const router = useRouter();
-  const [selectedTheme, setSelectedTheme] = useState("Interview");
+export default function DeskTopPortfolioItem({
+  params,
+}: {
+  params: { id: number };
+}) {
   const { data, isLoading } = useQuery({
-    queryKey: ["fetchPortfolioTheme", selectedTheme],
-    queryFn: () => fetchPortfolioTheme(selectedTheme),
+    queryKey: ["fetchPortfolioItem", params.id],
+    queryFn: () => fetchPortfolioItem({ THEME: "Interview", id: params.id }),
   });
 
-  const onClickTheme = (theme: string) => {
-    setSelectedTheme(theme);
-  };
-  const onClickItem = (id: number) => {
-    router.push(`/portfolio/item/${id}`);
-  };
+  console.log("item data : ", data);
+  // const onClickItem = (id: number) => {
+  //   router.push(`/portfolio/item/${id}`);
+  // };
 
-  const handleKeyDown = (
-    event: React.KeyboardEvent<HTMLDivElement>,
-    id: number,
-  ) => {
-    if (event.key === "Enter" || event.key === " ") {
-      onClickItem(id);
-    }
-  };
-  console.log(data);
+  // const handleKeyDown = (
+  //   event: React.KeyboardEvent<HTMLDivElement>,
+  //   id: number,
+  // ) => {
+  //   if (event.key === "Enter" || event.key === " ") {
+  //     onClickItem(id);
+  //   }
+  // };
   if (isLoading) return <div>Loading...</div>;
   return (
     <div>
@@ -82,7 +79,9 @@ export default function DeskTopPortfolio() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 mx-auto flex flex-row items-center justify-evenly text-primary font-pre text-body font-medium">
+      </section>
+      <section className="w-[50%] mx-auto">
+        <div className="w-full mx-auto flex flex-row items-center justify-evenly text-primary font-pre text-body font-medium">
           {[
             "After Movie / Event Sketch",
             "Interview",
@@ -99,7 +98,6 @@ export default function DeskTopPortfolio() {
                   ? "border-primary bg-primary text-black"
                   : "border-primary text-primary"
               } rounded-3xl px-5 py-2 whitespace-nowrap`}
-              onClick={() => onClickTheme(item)}
             >
               {item}
             </button>
@@ -110,35 +108,50 @@ export default function DeskTopPortfolio() {
             After Movie / Event Sketch
           </p>
         </div>
-      </section>
-      <div className="relative w-1/2 mt-14 mx-auto grid grid-cols-2 gap-8">
-        {data &&
-          data.DATA &&
-          data.DATA.map((item: any) => (
+        <div className="mt-20 text-headline2">
+          <p className="font-pre font-semibold text-start text-primary">
+            R.B.FILM 2022 Show Reel Celeb ver
+          </p>
+          <p className="font-pre font-semibold text-start text-primary">
+            2022년 하반기, R.B.FILM 인물 위주 쇼릴 입니다.
+          </p>
+        </div>
+        <div className="mt-4 flex flex-col gap-2">
+          <div className="border border-white bg-gray h-64">1</div>
+          <div className="flex flex-row gap-2">
+            <div className="border border-white bg-gray w-[40%] h-80">2</div>
+            <div className="border border-white bg-gray w-[60%] h-80">2</div>
+          </div>
+        </div>
+        <div className="flex justify-around gap-5 w-full mt-20">
+          {[
+            "경찰청",
+            "Ronin 4D 6K / Sony A7S3 / Mavic 3 Classic",
+            "최정훈",
+          ].map((text) => (
             <div
-              key={item.id}
-              className="border border-primary rounded relative w-full h-0 pb-[56.25%] overflow-hidden"
-              onClick={() => onClickItem(item.id)}
-              onKeyDown={(event) => handleKeyDown(event, item.id)}
-              role="button"
-              tabIndex={0}
+              key={text}
+              className="relative w-1/3 h-56 border border-primary rounded-lg"
             >
-              <Image
-                key={item.id}
-                className="absolute inset-0 w-full h-full"
-                src={item.image_url}
-                alt="portfolio url"
-                width={100}
-                height={50}
-              />
-              <div className="absolute inset-0 flex justify-center items-center">
-                <div className="cursor-pointer w-16 h-16 bg-white bg-opacity-75 rounded-full flex justify-center items-center border-none">
-                  <TbPlayerPlayFilled className="text-black w-8 h-8" />
-                </div>
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black px-2">
+                <span className="font-pre font-medium text-headline2 text-primary">
+                  Client
+                </span>
+              </div>
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-black px-2">
+                <span className="font-pre font-medium text-headline2 text-primary">
+                  고객사
+                </span>
+              </div>
+              <div className="flex items-center justify-center h-full">
+                <span className="font-pre font-medium text-body text-white">
+                  {text}
+                </span>
               </div>
             </div>
           ))}
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
