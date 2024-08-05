@@ -17,7 +17,7 @@ export default function Carousel() {
     className: "center",
     centerMode: true,
     centerPadding: "0px",
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -32,31 +32,36 @@ export default function Carousel() {
     { id: 1, image: "/project03.svg" },
     { id: 2, image: "/project03.svg" },
     { id: 3, image: "/project03.svg" },
+    { id: 4, image: "/project03.svg" },
+    { id: 5, image: "/project03.svg" },
   ];
 
   const slideClass = (index: number) => {
-    const relativeIndex =
-      (index - currentSlide + slides.length) % slides.length;
-
-    if (relativeIndex === 0) {
-      return "scale-90 z-20 transform translate-x-0";
+    if (index === currentSlide) {
+      return "scale-125 z-20 opacity-100 transform translate-y-8";
     }
-    if (relativeIndex === 1) {
-      return "scale-125 z-10 transform -translate-x-2";
+    if (
+      index === currentSlide - 1 ||
+      (currentSlide === 0 && index === slides.length - 1)
+    ) {
+      return "scale-75 z-10 opacity-50 -mr-32";
     }
-    if (relativeIndex === 2) {
-      return "scale-90 z-10 transform translate-x-0";
+    if (
+      index === currentSlide + 1 ||
+      (currentSlide === slides.length - 1 && index === 0)
+    ) {
+      return "scale-75 z-10 opacity-50 -ml-32";
     }
-    return "scale-75 z-0 opacity-50";
+    return "scale-50 z-0 opacity-0";
   };
 
   return (
-    <div className="w-[90%] max-w-6xl mx-auto mt-10 overflow-hidden">
+    <div className="w-[90%] max-w-6xl mx-auto mt-10 overflow-hidden pb-8">
       <Slider {...settings}>
         {slides.map((slide, index) => (
-          <div key={slide.id} className="">
+          <div key={slide.id} className="px-4">
             <div className={`transition-all duration-300 ${slideClass(index)}`}>
-              <div className="relative aspect-[16/9]  rounded-lg border border-primary overflow-hidden">
+              <div className="relative aspect-[16/9] rounded-lg border border-primary overflow-hidden">
                 <Image
                   src={slide.image}
                   alt={`Slide ${slide.id}`}
