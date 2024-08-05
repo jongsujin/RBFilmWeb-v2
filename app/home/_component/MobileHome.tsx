@@ -384,6 +384,7 @@ export default function MobileHome() {
         <section className="mt-32">
           <p className="text-primary text-[55px] font-extrabold">Biography</p>
           <p className="text-primary text-headline1 font-extrabold">연혁</p>
+          <Carousel />
         </section>
       </main>
     </div>
