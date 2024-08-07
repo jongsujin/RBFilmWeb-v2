@@ -164,9 +164,8 @@ export default function MobileContact() {
                 *
               </div>
             </div>
-            <input
-              className="input-with-bg w-full placeholder:text-black font-bold p-3"
-              type="text"
+            <textarea
+              className="input-with-bg w-full h-32 placeholder:text-black font-bold p-3"
               placeholder="입력해주세요"
             />
           </div>

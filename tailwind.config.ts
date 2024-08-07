@@ -21,11 +21,15 @@ const config: Config = {
       white: "#ffffff",
       gray: "#dbdbdb",
       primary: "#e9d1ad",
+      lightPrimary: "#FFEBC7",
       secondary: "#DACCBA",
     },
     extend: {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
+        robotoFlex: ["Roboto Flex", "sans-serif"],
+        robotoSlab: ["Roboto Slab", "serif"],
+        bak: ["Bakbak One", "sans-serif"],
         bai: ["Bai Jamjuree", "sans-serif"],
         pre: ["Pretendard", "sans-serif"],
       },

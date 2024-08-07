@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function DeskTopHeader() {
   return (
@@ -29,12 +30,30 @@ export default function DeskTopHeader() {
           </button>
         </div>
         <div className="flex-0 flex flex-row gap-5 items-center align-middle justify-evenly font-pre font-medium">
-          <p className="cursor-pointer">HOME</p>
-          <p className="cursor-pointer">ABOUT</p>
-          <p className="cursor-pointer">SERVICE</p>
-          <p className="cursor-pointer">PORTFOLIO</p>
-          <p className="cursor-pointer">PHOTO</p>
-          <p className="cursor-pointer">CONTACT</p>
+          <Link href="/">
+            {" "}
+            <p className="cursor-pointer">HOME</p>
+          </Link>
+          <Link href="/">
+            {" "}
+            <p className="cursor-pointer">ABOUT</p>
+          </Link>
+          <Link href="/service">
+            {" "}
+            <p className="cursor-pointer">SERVICE</p>
+          </Link>
+          <Link href="/portfolio">
+            {" "}
+            <p className="cursor-pointer">PORTFOLIO</p>
+          </Link>
+          <Link href="/photo">
+            {" "}
+            <p className="cursor-pointer">PHOTO</p>
+          </Link>
+          <Link href="/contact">
+            {" "}
+            <p className="cursor-pointer">CONTACT</p>
+          </Link>
         </div>
       </div>
     </header>

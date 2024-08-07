@@ -11,7 +11,7 @@ import { TbPlayerPlayFilled } from "react-icons/tb";
 
 export default function DeskTopPortfolio() {
   const router = useRouter();
-  const [selectedTheme, setSelectedTheme] = useState("Interview");
+  const [selectedTheme, setSelectedTheme] = useState("Youtube");
   const { data, isLoading } = useQuery({
     queryKey: ["fetchPortfolioTheme", selectedTheme],
     queryFn: () => fetchPortfolioTheme(selectedTheme),

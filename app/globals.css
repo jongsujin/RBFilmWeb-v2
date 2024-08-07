@@ -1,8 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&family=Bai+Jamjuree:wght@100;400;700&display=swap");
+
+/* Importing fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&family=Roboto+Flex:wght@100;400;700&family=Roboto+Slab:wght@100;400;700&family=Bai+Jamjuree:wght@100;400;700&family=Bakbak+One&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css");
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

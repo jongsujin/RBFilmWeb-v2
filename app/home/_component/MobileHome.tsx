@@ -1,40 +1,18 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import fetchMainfilmData from "@/api/fetchMainFilmData";
 import MobileHeader from "@/components/Header/MobileHeader";
+import MobileTab from "@/components/Tab/MobileTab";
+
+import { useGetMainFilm } from "@/hooks/useGetMainFilm";
+import { useGetClientData } from "@/hooks/useGetClientData";
 import Carousel from "./Carousel";
 import ClienItem from "./ClientItem";
 import MainFilm from "./MainFilm";
 
-export interface MainFilmDataProps {
-  THEME: string;
-  url: string;
-}
-
-export interface ClientItemProps {
-  title: string;
-  image_url: string;
-  id: number;
-}
-export interface ClientDataProps {
-  THEME: string;
-  DATA: ClientItemProps[];
-}
 export default function MobileHome() {
-  const { data: mainFilmData, isLoading } = useQuery<MainFilmDataProps>({
-    queryKey: ["mainFilmData"],
-    queryFn: () => fetchMainfilmData("Mainfilm"),
-    refetchOnWindowFocus: false,
-    staleTime: Infinity,
-  });
-
-  const { data: clientData } = useQuery<ClientDataProps>({
-    queryKey: ["clientData"],
-    queryFn: () => fetchMainfilmData("Client"),
-    refetchOnWindowFocus: false,
-  });
+  const { data: mainFilmData, isLoading } = useGetMainFilm();
+  const { data: clientData } = useGetClientData();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -70,23 +48,7 @@ export default function MobileHome() {
               objectFit="cover"
             />
             <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-center">
-              <div className="w-[90%] pt-10 flex flex-row items-center justify-around text-black font-pre text-sm sm:text-lg font-medium">
-                {["Home", "SERVICE", "PORTFOLIO", "PHOTO", "CONTACT"].map(
-                  (item, index) => (
-                    <button
-                      key={item}
-                      type="button"
-                      className={`border ${
-                        index === 0
-                          ? "border-primary bg-primary"
-                          : "border-black"
-                      } rounded-2xl p-2 whitespace-nowrap`}
-                    >
-                      {item}
-                    </button>
-                  ),
-                )}
-              </div>
+              <MobileTab />
               <div className="w-[90%] mt-8">
                 <div
                   className="relative w-full"
@@ -118,7 +80,7 @@ export default function MobileHome() {
               <div className="w-[90%] text-black text-left">
                 <h2 className="text-2xl font-bold mb-8">ABOUT ME</h2>
                 <div className="text-sm sm:text-base">
-                  <p className="mb-3">
+                  <p className="font-bak font-normal mb-3">
                     어떤 종류의 프로젝트라도 내 영상을 제작한다는 마음으로
                     함께하고 있으며
                   </p>
@@ -136,7 +98,7 @@ export default function MobileHome() {
           </div>
         </section>
         <section className="w-[90%] mt-32 mx-auto">
-          <h1 className="mb-8 text-5xl text-left font-extrabold text-primary font-roboto">
+          <h1 className="mb-8 text-5xl text-left font-extrabold text-primary">
             PROJECT
           </h1>
           <div className="flex flex-row justify-center gap-3">
@@ -209,7 +171,7 @@ export default function MobileHome() {
           </div>
           <div className="flex justify-end mt-4">
             <button
-              className="bg-black text-primary border border-primary rounded-2xl py-2 px-4 cursor-pointer"
+              className="font-bai bg-black text-primary border border-primary rounded-2xl py-2 px-4 cursor-pointer"
               type="button"
             >
               And More
@@ -220,7 +182,7 @@ export default function MobileHome() {
           <div className="absolute inset-0 flex items-center px-4 pt-4">
             <div className="flex-grow border-t border-primary" />
           </div>
-          <div className="relative flex flex-col justify-center bg-black px-2 text-primary text-[55px] font-extrabold">
+          <div className="relative flex flex-col justify-center bg-black px-2 text-primary text-[52px] font-extrabold">
             <p> Equipments</p>
           </div>
         </section>
@@ -324,28 +286,28 @@ export default function MobileHome() {
           <div className="flex flex-col">
             <div className="mx-auto">
               <div className="flex items-baseline">
-                <p className="text-primary font-extrabold text-[35px]">
+                <p className="text-lightPrimary font-extrabold text-[35px]">
                   R.B.FILM
                 </p>
-                <p className="text-primary font-extrabold text-headline1 ml-2">
+                <p className="text-lightPrimary font-extrabold text-headline1 ml-2">
                   만의
                 </p>
               </div>
               <div className="flex items-baseline">
-                <p className="text-primary font-extrabold text-[27px]">
+                <p className="text-lightPrimary font-extrabold text-[27px]">
                   핵심 강점
                 </p>
-                <p className="text-primary font-extrabold text-headline1 mx-2">
+                <p className="text-lightPrimary font-extrabold text-headline1 mx-2">
                   및
                 </p>
-                <p className="text-primary font-extrabold text-[27px]">
+                <p className="text-lightPrimary font-extrabold text-[27px]">
                   차별성
                 </p>
               </div>
             </div>
           </div>
           <Carousel />
-          <div className="text-center text-white font-pre font-normal mt-14">
+          <div className="text-center text-white font-pre font-medium mt-14">
             <div className="text-headline3">
               <p>틀에 박힌 구성의 영상이 아닌</p>
               <p>각각의 의뢰 컨셉에 맞는 영상을 제작 드리고 있습니다.</p>
@@ -355,7 +317,7 @@ export default function MobileHome() {
               <p>R.B.FILM만의 색깔로 차별화 된 영상을 추구 합니다.</p>
             </div>
             <button
-              className="bg-black text-white text-[15px] border border-primary rounded-3xl mt-9 py-2 px-4 cursor-pointer"
+              className="bg-black text-white text-[15px] font-semibold border border-primary rounded-3xl mt-9 py-2 px-4 cursor-pointer"
               type="button"
             >
               포트폴리오 보기
@@ -363,8 +325,12 @@ export default function MobileHome() {
           </div>
         </section>
         <section className="mt-32">
-          <p className="text-primary text-[55px] font-extrabold">Clients</p>
-          <p className="text-primary text-headline1 font-extrabold">고객사</p>
+          <p className="text-lightPrimary text-[55px] font-extrabold">
+            Clients
+          </p>
+          <p className="text-lightPrimary text-headline1 font-extrabold">
+            고객사
+          </p>
           <div className="text-headline3 text-white font-pre font-normal mt-5">
             <p>많은 클라이언트 분들과 함께 했고,</p>
             <p>현재도 많은 인연을 이어 나가고 있습니다.</p>
@@ -382,8 +348,12 @@ export default function MobileHome() {
           </div>
         </section>
         <section className="mt-32">
-          <p className="text-primary text-[55px] font-extrabold">Biography</p>
-          <p className="text-primary text-headline1 font-extrabold">연혁</p>
+          <p className="text-lightPrimary text-[55px] font-extrabold">
+            Biography
+          </p>
+          <p className="text-lightPrimary text-headline1 font-extrabold">
+            연혁
+          </p>
           <Carousel />
         </section>
       </main>

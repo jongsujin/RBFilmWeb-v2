@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import Image from "next/image";
+import { LuPhoneCall } from "react-icons/lu";
 import Button from "../../Button/Button";
 
 export default function MobileBtnContainer() {
@@ -43,9 +44,15 @@ export default function MobileBtnContainer() {
             fontWeight="font-medium"
           />
         </div>
-        <div className="flex-1 flex flex-row justify-end gap-5">
-          <Image src="/callBtn.svg" alt="전화버튼" width={24} height={24} />
-          <Image src="/emailBtn.svg" alt="메일버튼" width={24} height={24} />
+        <div className="flex-1 flex flex-row items-center justify-end gap-5">
+          <LuPhoneCall className="cursor-pointer w-5 h-5 text-gray" />
+          <Image
+            src="/emailBtn.svg"
+            alt="메일버튼"
+            width={24}
+            height={24}
+            className="cursor-pointer"
+          />
         </div>
       </div>
     </div>

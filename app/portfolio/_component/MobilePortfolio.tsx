@@ -3,7 +3,6 @@
 import Image from "next/image";
 import MobileHeader from "@/components/Header/MobileHeader";
 import PortfolioTitle from "@/data/PortfolioTitle";
-import Footer from "@/components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
 import fetchPortfolioTheme from "@/api/fetchPortfolioTheme";
 import React, { useState } from "react";
@@ -12,7 +11,7 @@ import { TbPlayerPlayFilled } from "react-icons/tb";
 
 export default function MobilePortfolio() {
   const router = useRouter();
-  const [selectedTheme, setSelectedTheme] = useState("Interview");
+  const [selectedTheme, setSelectedTheme] = useState("BrandFilmCF");
   const { data, isLoading } = useQuery({
     queryKey: ["fetchPortfolioTheme", selectedTheme],
     queryFn: () => fetchPortfolioTheme(selectedTheme),
@@ -104,7 +103,7 @@ export default function MobilePortfolio() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="mb-44">
         <div className="mt-20 flex flex-row gap-4 overflow-x-scroll w-[90%] mx-auto">
           {PortfolioTitle &&
             PortfolioTitle.map((title) => (
@@ -137,7 +136,7 @@ export default function MobilePortfolio() {
                 <Image
                   key={item.id}
                   className="absolute inset-0 w-full h-full"
-                  src={item.image_url}
+                  src={item.imageUrl[0]}
                   alt="portfolio url"
                   width={100}
                   height={50}
@@ -151,9 +150,6 @@ export default function MobilePortfolio() {
             ))}
         </div>
       </section>
-      <footer className="mt-44">
-        <Footer />
-      </footer>
     </div>
   );
 }

@@ -1,28 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
-import fetchMainfilmData from "@/api/fetchMainFilmData";
 import DeskTopHeader from "@/components/Header/DeskTopHeader";
 import DeskTopBtnContainer from "@/components/Header/_component/DeskTopBtnContainer";
-import { ClientDataProps, MainFilmDataProps } from "./MobileHome";
+
+import { useGetMainFilm } from "@/hooks/useGetMainFilm";
+import { useGetClientData } from "@/hooks/useGetClientData";
 import MainFilm from "./MainFilm";
 import Carousel from "./Carousel";
 import ClienItem from "./ClientItem";
 
 export default function DeskTopHome() {
-  const { data: mainFilmData, isLoading } = useQuery<MainFilmDataProps>({
-    queryKey: ["mainFilmData"],
-    queryFn: () => fetchMainfilmData("Mainfilm"),
-    refetchOnWindowFocus: false,
-    staleTime: Infinity,
-  });
-
-  const { data: clientData } = useQuery<ClientDataProps>({
-    queryKey: ["clientData"],
-    queryFn: () => fetchMainfilmData("Client"),
-    refetchOnWindowFocus: false,
-  });
+  const { data: mainFilmData, isLoading } = useGetMainFilm();
+  const { data: clientData } = useGetClientData();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -36,8 +26,8 @@ export default function DeskTopHome() {
           {mainFilmData && <MainFilm url={mainFilmData.url} />}
         </div>
         <section className="mt-44">
-          <div className="font-roboto text-primary">
-            <p className="font-extrabold text-[64px] leading-tight">
+          <div className="text-primary">
+            <p className="font-robotoSlab font-extrabold text-[64px] leading-tight">
               CAPTURING
             </p>
             <p className="font-normal text-[24px] leading-tight">
@@ -50,7 +40,9 @@ export default function DeskTopHome() {
             <p className="font-normal text-[24px] leading-tight">
               Trendy and Dynamic Film
             </p>
-            <p className="font-extrabold text-[64px] leading-tight">R.B.FILM</p>
+            <p className="font-robotoSlab font-extrabold text-[64px] leading-tight">
+              R.B.FILM
+            </p>
           </div>
         </section>
         <section className="w-full mt-32">
@@ -130,7 +122,7 @@ export default function DeskTopHome() {
           </div>
         </section>
         <section className="w-[60%] mt-32 mx-auto">
-          <h1 className="mb-8 text-5xl text-left font-extrabold text-primary font-roboto">
+          <h1 className="mb-8 text-5xl text-left font-extrabold text-primary font-robotoSlab">
             PROJECT
           </h1>
           <div className="flex flex-row justify-center gap-3">
@@ -203,7 +195,7 @@ export default function DeskTopHome() {
           </div>
         </section>
         <section className="w-[60%]  mx-auto relative flex justify-center mt-36 align-middle items-center">
-          <div className="relative flex flex-col justify-center bg-black px-2 text-primary text-[55px] font-extrabold">
+          <div className="relative flex flex-col justify-center bg-black px-2 font-robotoSlab text-primary text-[55px] font-extrabold">
             <p>Equipments</p>
           </div>
         </section>
@@ -216,10 +208,10 @@ export default function DeskTopHome() {
               layout="fill"
               objectFit="cover"
             />
-            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-[24px]">
+            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robotoFlex font-bold text-[24px]">
               Red Komodo 6K
             </p>
-            <div className="absolute bottom-14 right-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-body">
+            <div className="absolute bottom-14 right-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robotoFlex font-normal text-body">
               <div className="flex flex-row gap-2">
                 <Image src="/minusBtn.svg" alt="minus" width={13} height={13} />
                 <p>Canon RF 28-70mm</p>
@@ -238,10 +230,10 @@ export default function DeskTopHome() {
               layout="fill"
               objectFit="cover"
             />
-            <p className="absolute top-1/2 right-32 transform translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-[24px]">
+            <p className="absolute top-1/2 right-32 transform translate-x-1/2 -translate-y-1/2 text-white text-center font-robotoFlex font-bold text-[24px]">
               Ronin 4D 6K
             </p>
-            <div className="absolute bottom-14 left-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-body">
+            <div className="absolute bottom-14 left-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robotoFlex font-normal text-body">
               <div className="flex flex-row gap-2">
                 <Image src="/plusBtn.svg" alt="minus" width={13} height={13} />
                 <p>Canon RF 28-70mm</p>
@@ -260,10 +252,10 @@ export default function DeskTopHome() {
               layout="fill"
               objectFit="cover"
             />
-            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-[24px]">
+            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robotoFlex font-bold text-[24px]">
               Sony FX9
             </p>
-            <div className="absolute bottom-14 right-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-body">
+            <div className="absolute bottom-14 right-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robotoFlex font-normal text-body">
               <div className="flex flex-row gap-2">
                 <Image src="/minusBtn.svg" alt="minus" width={13} height={13} />
                 <p>Sony 70-200 GM2</p>
@@ -282,11 +274,11 @@ export default function DeskTopHome() {
               layout="fill"
               objectFit="cover"
             />
-            <div className="absolute text-end top-1/2 right-32 transform translate-x-1/2 -translate-y-1/2 text-white  font-robo font-bold text-[24px]">
+            <div className="absolute text-end top-1/2 right-32 transform translate-x-1/2 -translate-y-1/2 text-white  font-robotoFlex font-bold text-[24px]">
               <p>Sony A7S</p>
               <p>Sony A1</p>
             </div>
-            <div className="absolute bottom-14 left-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robo font-normal text-body">
+            <div className="absolute bottom-14 left-8 transform translate-x-1/8 translate-y-1/8 text-white text-left font-robotoFlex font-normal text-body">
               <div className="flex flex-row gap-2">
                 <Image src="/plusBtn.svg" alt="minus" width={13} height={13} />
                 <p>Sony 50 GM</p>
@@ -305,7 +297,7 @@ export default function DeskTopHome() {
               layout="fill"
               objectFit="cover"
             />
-            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robo font-bold text-[24px]">
+            <p className="absolute top-1/2 left-32 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-robotoFlex font-bold text-[24px]">
               Mavic 3
             </p>
           </div>
@@ -348,7 +340,9 @@ export default function DeskTopHome() {
           </div>
         </section>
         <section className="w-[60%] mx-auto mt-32">
-          <p className="text-primary text-[55px] font-extrabold">Clients</p>
+          <p className="font-robotoSlab text-primary text-[55px] font-extrabold">
+            Clients
+          </p>
 
           <div className="mt-16 mx-2 grid grid-cols-5">
             {clientData &&
@@ -363,7 +357,9 @@ export default function DeskTopHome() {
           </div>
         </section>
         <section className="mt-32">
-          <p className="text-primary text-[55px] font-extrabold">Biography</p>
+          <p className="font-robotoSlab text-primary text-[55px] font-extrabold">
+            Biography
+          </p>
         </section>
       </main>
     </div>
