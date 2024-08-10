@@ -5,13 +5,16 @@ import MobileHeader from "@/components/Header/MobileHeader";
 import PortfolioTitle from "@/data/PortfolioTitle";
 import { useQuery } from "@tanstack/react-query";
 import fetchPortfolioTheme from "@/api/fetchPortfolioTheme";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import { TbPlayerPlayFilled } from "react-icons/tb";
+import useStore from "@/store/useStore";
 
 export default function MobilePortfolio() {
   const router = useRouter();
-  const [selectedTheme, setSelectedTheme] = useState("BrandFilmCF");
+  const selectedTheme = useStore((state) => state.selectedTheme);
+  const setSelectedTheme = useStore((state) => state.setSelectedTheme);
+  console.log("selectedTheme : ", selectedTheme);
   const { data, isLoading } = useQuery({
     queryKey: ["fetchPortfolioTheme", selectedTheme],
     queryFn: () => fetchPortfolioTheme(selectedTheme),
@@ -49,19 +52,20 @@ export default function MobilePortfolio() {
           />
           <div className="absolute top-2 left-0 w-full h-full flex flex-col gap-3 justify-start items-center">
             <div className="w-[90%] pt-10 flex flex-row items-center justify-around text-black font-pre text-sm sm:text-lg font-medium">
-              {["Home", "SERVICE", "PORTFOLIO", "PHOTO", "CONTACT"].map(
-                (item, index) => (
+              {PortfolioTitle &&
+                PortfolioTitle.map((item) => (
                   <button
-                    key={item}
+                    key={item.id}
                     type="button"
                     className={`cursor-pointer border ${
-                      index === 2 ? "border-primary bg-primary" : "border-black"
+                      selectedTheme === item.value
+                        ? "border-primary bg-primary"
+                        : "border-black"
                     } rounded-2xl p-2 whitespace-nowrap`}
                   >
-                    {item}
+                    {item.title}
                   </button>
-                ),
-              )}
+                ))}
             </div>
             <div className="mt-5 text-center font-pre">
               <p className="text-[55px] font-extrabold">Portfolio</p>
@@ -111,11 +115,11 @@ export default function MobilePortfolio() {
                 key={title.id}
                 type="button"
                 className={`cursor-pointer border ${
-                  selectedTheme === title.title
+                  selectedTheme === title.value
                     ? "border-primary bg-primary"
                     : "border-primary bg-black text-white"
                 } rounded-2xl p-2 whitespace-nowrap`}
-                onClick={() => onClickTheme(title.title)}
+                onClick={() => onClickTheme(title.value)}
               >
                 {title.title}
               </button>

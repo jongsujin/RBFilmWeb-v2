@@ -4,17 +4,21 @@ import Image from "next/image";
 import MobileHeader from "@/components/Header/MobileHeader";
 import ReactPlayer from "react-player";
 import PortfolioTitle from "@/data/PortfolioTitle";
-import Footer from "@/components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
 import fetchPortfolioItem from "@/api/fetchPortfolioItem";
 import Link from "next/link";
 import { PortfolioItemProps } from "@/types/PortfolioType";
+import useStore from "@/store/useStore";
+import { useRouter } from "next/navigation";
 
 export default function MobilePortfolioItem({
   params,
 }: {
   params: { id: number };
 }) {
+  const router = useRouter();
+  const selectedTheme = useStore((state) => state.selectedTheme);
+  const setSelectedTheme = useStore((state) => state.setSelectedTheme);
   console.log("id : ", params.id);
   const { data, isLoading } = useQuery<PortfolioItemProps>({
     queryKey: ["fetchPortfolioItem", params.id],
@@ -22,6 +26,10 @@ export default function MobilePortfolioItem({
   });
   console.log("item data : ", data);
 
+  const onClickTheme = (theme: string) => {
+    setSelectedTheme(theme);
+    router.push("/portfolio");
+  };
   if (isLoading) return <div>Loading...</div>;
   return (
     <div>
@@ -38,19 +46,21 @@ export default function MobilePortfolioItem({
           />
           <div className="absolute top-2 left-0 w-full h-full flex flex-col gap-3 justify-start items-center">
             <div className="w-[90%] pt-10 flex flex-row items-center justify-around text-black font-pre text-sm sm:text-lg font-medium">
-              {["Home", "SERVICE", "PORTFOLIO", "PHOTO", "CONTACT"].map(
-                (item, index) => (
+              {PortfolioTitle &&
+                PortfolioTitle.map((item) => (
                   <button
-                    key={item}
+                    key={item.id}
                     type="button"
                     className={`border ${
-                      index === 2 ? "border-primary bg-primary" : "border-black"
+                      selectedTheme === item.value
+                        ? "border-primary bg-primary"
+                        : "border-black"
                     } rounded-2xl p-2 whitespace-nowrap`}
+                    onClick={() => onClickTheme(item.value)}
                   >
-                    {item}
+                    {item.title}
                   </button>
-                ),
-              )}
+                ))}
             </div>
             <div className="mt-5 text-center font-pre">
               <p className="text-[55px] font-extrabold">Portfolio</p>
@@ -101,7 +111,12 @@ export default function MobilePortfolioItem({
               <button
                 key={title.id}
                 type="button"
-                className="border border-primary flex-shrink-0 w-auto font-pre text-white text-body rounded-2xl p-2 whitespace-nowrap"
+                className={`border ${
+                  selectedTheme === title.value
+                    ? "border-primary bg-primary"
+                    : "border-primary text-white"
+                } rounded-3xl py-1 px-2 whitespace-nowrap`}
+                onClick={() => onClickTheme(title.value)}
               >
                 {title.title}
               </button>
@@ -115,8 +130,8 @@ export default function MobilePortfolioItem({
           </div>
         </div>
         <div className="font-pre text-center mt-10">
-          <p className="text-headline3 font-semibold">{data?.first_content}</p>
-          <p className="text-lg font-bold">{data?.second_content}</p>
+          <p className="text-headline3 font-semibold">{data?.title}</p>
+          <p className="text-lg font-bold">{data?.subTitle}</p>
         </div>
         <div className="font-pre mt-8">
           <div className="flex flex-row justify-start items-center mb-2 gap-2">
@@ -130,13 +145,31 @@ export default function MobilePortfolioItem({
               장비
             </div>
             <p className=" text-lg font-medium flex-grow px-3">
-              {data?.first_by}
+              {data?.equipment}
             </p>
           </div>
         </div>
         <div className="mt-14 flex flex-col gap-5">
-          <div className="border border-white w-full pb-[56.25%] bg-gray" />
-          <div className="border border-white w-full pb-[56.25%] bg-gray" />
+          {data && data.imageUrl.length > 1 && (
+            <>
+              <div className="relative  w-full pb-[56.25%]">
+                <Image
+                  src={data?.imageUrl[1]}
+                  alt="imageUrl[2]"
+                  className="absolute"
+                  layout="fill"
+                />
+              </div>
+              <div className="relative w-full pb-[56.25%]">
+                <Image
+                  src={data?.imageUrl[2]}
+                  alt="imageUrl[2]"
+                  className="absolute"
+                  layout="fill"
+                />
+              </div>
+            </>
+          )}
         </div>
         <div className="mt-7 w-full flex flex-row justify-end">
           <div />
@@ -150,9 +183,6 @@ export default function MobilePortfolioItem({
           </Link>
         </div>
       </section>
-      <footer className="mt-44">
-        <Footer />
-      </footer>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import DeskTopBtnContainer from "@/components/Header/_component/DeskTopBtnContainer";
 import DeskTopHeader from "@/components/Header/DeskTopHeader";
@@ -8,11 +8,15 @@ import { useRouter } from "next/navigation";
 import fetchPortfolioTheme from "@/api/fetchPortfolioTheme";
 import { useQuery } from "@tanstack/react-query";
 import { TbPlayerPlayFilled } from "react-icons/tb";
+import PortfolioTitle from "@/data/PortfolioTitle";
+import { PortfolioItemProps, PortFolioThemeProps } from "@/types/PortfolioType";
+import useStore from "@/store/useStore";
 
 export default function DeskTopPortfolio() {
   const router = useRouter();
-  const [selectedTheme, setSelectedTheme] = useState("Youtube");
-  const { data, isLoading } = useQuery({
+  const selectedTheme = useStore((state) => state.selectedTheme);
+  const setSelectedTheme = useStore((state) => state.setSelectedTheme);
+  const { data, isLoading } = useQuery<PortFolioThemeProps>({
     queryKey: ["fetchPortfolioTheme", selectedTheme],
     queryFn: () => fetchPortfolioTheme(selectedTheme),
   });
@@ -82,39 +86,33 @@ export default function DeskTopPortfolio() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 mx-auto flex flex-row items-center justify-evenly text-primary font-pre text-body font-medium">
-          {[
-            "After Movie / Event Sketch",
-            "Interview",
-            "Brand Film / Viral",
-            "PERFORMANCE",
-            "YOUTUBE",
-            "ETC",
-          ].map((item, index) => (
-            <button
-              key={item}
-              type="button"
-              className={`border ${
-                index === 0
-                  ? "border-primary bg-primary text-black"
-                  : "border-primary text-primary"
-              } rounded-3xl px-5 py-2 whitespace-nowrap`}
-              onClick={() => onClickTheme(item)}
-            >
-              {item}
-            </button>
-          ))}
+        <div className="w-1/2 mx-auto flex flex-row items-center justify-evenly gap-2 text-primary font-pre text-body font-medium">
+          {PortfolioTitle &&
+            PortfolioTitle.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`border ${
+                  selectedTheme === item.value
+                    ? "border-primary bg-primary text-black"
+                    : "border-primary text-primary"
+                } rounded-3xl px-5 py-2 whitespace-nowrap`}
+                onClick={() => onClickTheme(item.value)}
+              >
+                {item.title}
+              </button>
+            ))}
         </div>
         <div className="mt-20 text-center">
           <p className="text-[30px] text-white font-semibold">
-            After Movie / Event Sketch
+            {PortfolioTitle.find((item) => item.value === selectedTheme)?.title}
           </p>
         </div>
       </section>
       <div className="relative w-1/2 mt-14 mx-auto grid grid-cols-2 gap-8">
         {data &&
           data.DATA &&
-          data.DATA.map((item: any) => (
+          data.DATA.map((item: PortfolioItemProps) => (
             <div
               key={item.id}
               className="border border-primary rounded relative w-full h-0 pb-[56.25%] overflow-hidden"
@@ -126,7 +124,7 @@ export default function DeskTopPortfolio() {
               <Image
                 key={item.id}
                 className="absolute inset-0 w-full h-full"
-                src={item.image_url}
+                src={item.imageUrl[0]}
                 alt="portfolio url"
                 width={100}
                 height={50}

@@ -1,14 +1,12 @@
 export interface PortfolioItemProps {
+  client: string;
+  equipment: string;
+  title: string;
+  imageUrl: string[];
+  part: string[];
+  subTitle: string;
   id: number;
-  first_by?: string;
-  first_content?: string;
-  image_url?: string;
-  part?: string;
-  second_by?: string;
-  second_content?: string;
-  sub_title?: string;
-  title?: string;
-  url?: string;
+  url: string;
 }
 
 export interface PortFolioThemeProps {
