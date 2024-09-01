@@ -3,7 +3,7 @@ export default function PhotoItemTemplete() {
     <main className="w-full flex flex-col justify-center items-center">
       <section className="w-2/5 text-white text-center">
         <div className="font-pre">
-          <p className="text-[24px] font-bold">Sports</p>
+          <p className="text-[24px] font-bold">Sporwwts</p>
           <p className="text-[18px] font-medium">Kluvert Charity Match</p>
         </div>
         <div className="mt-7 flex flex-col justify-center gap-3">

@@ -7,7 +7,7 @@ interface ClientItemProps {
 
 export default function ClienItem({ title, url }: ClientItemProps) {
   return (
-    <div className="flex flex-col w-16 h-16 items-center mb-12 lg:w-36 lg:h-36">
+    <div className="border border-primary flex flex-col w-16 h-16 items-center mb-12 lg:w-36 lg:h-36">
       <Image
         className="lg:w-36 lg:h-36"
         src={url}

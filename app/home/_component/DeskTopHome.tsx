@@ -9,6 +9,7 @@ import { useGetClientData } from "@/hooks/useGetClientData";
 import MainFilm from "./MainFilm";
 import Carousel from "./Carousel";
 import ClienItem from "./ClientItem";
+import YearTab from "./YearTab";
 
 export default function DeskTopHome() {
   const { data: mainFilmData, isLoading } = useGetMainFilm();
@@ -360,6 +361,7 @@ export default function DeskTopHome() {
           <p className="font-robotoSlab text-primary text-[55px] font-extrabold">
             Biography
           </p>
+          <YearTab years={[2022, 2023, 2024]} />
         </section>
       </main>
     </div>

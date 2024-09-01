@@ -1,16 +1,39 @@
-export default function LeftTextPhotoTemplate() {
+import { PhotoTempleteProps } from "@/types/PhotoType";
+import Image from "next/image";
+
+export default function LeftTextPhotoTemplate({
+  firstUrl,
+  secondUrl,
+  title,
+  subTitle,
+}: PhotoTempleteProps) {
   return (
-    <div className="border border-white w-[90%] mx-auto flex gap-2 p-5 bg-black">
+    <div className="w-full mx-auto flex gap-2 p-5">
       <div className="flex-1 relative h-0 pb-[67.08%] bg-gray rounded-lg">
-        <div className="absolute inset-0 bg-gray-700" />
+        <Image
+          src={firstUrl}
+          alt={subTitle}
+          className="absolute inset-0"
+          fill
+          style={{ objectFit: "cover", borderRadius: "inherit" }}
+        />
       </div>
       <div className="flex-1 flex flex-col justify-between">
-        <div className="relative w-full h-0 pb-[81.99%] bg-primary rounded-lg">
-          <div className="absolute inset-0 bg-gray" />
-        </div>
+        {secondUrl && (
+          <div className="relative w-full h-0 pb-[81.99%] bg-primary rounded-lg">
+            <Image
+              src={secondUrl}
+              alt={subTitle}
+              className="absolute inset-0"
+              fill
+              style={{ objectFit: "cover", borderRadius: "inherit" }}
+            />
+          </div>
+        )}
+
         <div className="text-end text-white">
-          <p className="font-pre font-bold text-headline3">Sports</p>
-          <p className="font-pre font-medium text-lg">Kluivert Charity Match</p>
+          <p className="font-pre font-bold text-headline3">{title}</p>
+          <p className="font-pre font-medium text-lg">{subTitle}</p>
         </div>
       </div>
     </div>
