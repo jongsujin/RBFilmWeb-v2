@@ -4,11 +4,13 @@ import MobileHeader from "@/components/Header/MobileHeader";
 import { useQuery } from "@tanstack/react-query";
 import fetchPhotoTheme from "@/api/fetchPhotoTheme";
 import { PhotoDataProps } from "@/types/PhotoType";
+import { useRouter } from "next/navigation";
 import LeftTextPhotoTemplete from "./_component/LeftTextPhotoTemplete";
 import RightTextPhotoTemplete from "./_component/RightTextPhotoTemplete";
 import CenterTextPhotoTemplate from "./_component/CenterTextPhotoTemplete";
 
 export default function MobilePhoto() {
+  const router = useRouter();
   const { data: photoData, isLoading } = useQuery<PhotoDataProps>({
     queryKey: ["fetchPhotoTheme"],
     queryFn: () => fetchPhotoTheme("Photo"),
@@ -16,6 +18,9 @@ export default function MobilePhoto() {
 
   console.log("photoData", photoData);
   if (isLoading) return <div>Loading...</div>;
+  const handleClickPhotoItem = (id: number) => {
+    router.push(`/photo/item/${id}`);
+  };
   return (
     <div>
       <MobileHeader />
@@ -46,31 +51,37 @@ export default function MobilePhoto() {
           if (item.textPosition === "left") {
             return (
               <LeftTextPhotoTemplete
-                key={item.photoId}
+                key={item.id}
+                id={item.id}
                 firstUrl={item.photoThumbUrl[0]}
                 secondUrl={item.photoThumbUrl[1]}
                 title={item.photoTitle}
                 subTitle={item.photoSubTitle}
+                onClick={() => handleClickPhotoItem(item.id)}
               />
             );
           }
           if (item.textPosition === "right") {
             return (
               <RightTextPhotoTemplete
-                key={item.photoId}
+                key={item.id}
+                id={item.id}
                 firstUrl={item.photoThumbUrl[0]}
                 secondUrl={item.photoThumbUrl[1]}
                 title={item.photoTitle}
                 subTitle={item.photoSubTitle}
+                onClick={() => handleClickPhotoItem(item.id)}
               />
             );
           }
           return (
             <CenterTextPhotoTemplate
-              key={item.photoId}
+              key={item.id}
+              id={item.id}
               firstUrl={item.photoThumbUrl[0]}
               title={item.photoTitle}
               subTitle={item.photoSubTitle}
+              onClick={() => handleClickPhotoItem(item.id)}
             />
           );
         })}

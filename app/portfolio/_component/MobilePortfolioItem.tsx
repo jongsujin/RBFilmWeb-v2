@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import fetchPortfolioItem from "@/api/fetchPortfolioItem";
 import Link from "next/link";
 import { PortfolioItemProps } from "@/types/PortfolioType";
-import useStore from "@/store/useStore";
+import { useStore } from "@/store/useStore";
 import { useRouter } from "next/navigation";
 
 export default function MobilePortfolioItem({

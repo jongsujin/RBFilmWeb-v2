@@ -1,9 +1,6 @@
-export interface FetchPortfolioItemProps {
-  THEME: string;
-  id: number;
-}
+import { FetchPortfolioItemProps } from "./fetchPortfolioItem";
 
-const fetchPortfolioItem = async ({ THEME, id }: FetchPortfolioItemProps) => {
+const fetchPhotoItem = async ({ THEME, id }: FetchPortfolioItemProps) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_AWS_API_URL}/items/${THEME}/${id}`,
   );
@@ -14,4 +11,4 @@ const fetchPortfolioItem = async ({ THEME, id }: FetchPortfolioItemProps) => {
   return data;
 };
 
-export default fetchPortfolioItem;
+export default fetchPhotoItem;

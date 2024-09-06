@@ -1,3 +1,4 @@
+// 모바일 포토 페이지
 import DeskTopFooter from "@/components/Footer/DeskTopFooter";
 import Footer from "@/components/Footer/Footer";
 import MobilePhoto from "./_component/MobilePhoto";

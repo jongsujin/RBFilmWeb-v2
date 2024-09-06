@@ -2,19 +2,22 @@ import { PhotoTempleteProps } from "@/types/PhotoType";
 import Image from "next/image";
 
 export default function CenterTextPhotoTemplate({
+  id,
   firstUrl,
   title,
   subTitle,
+  onClick,
 }: PhotoTempleteProps) {
   return (
     <div className="w-[90%]  mx-auto flex flex-col items-center">
-      <div className="w-full relative pb-[52.0%] bg-gray rounded-lg">
+      <div className="w-full relative pb-[58%] rounded-lg">
         <Image
           src={firstUrl}
           alt={subTitle}
-          className="absolute inset-0"
+          className="cursor-pointer absolute inset-0"
           fill
           style={{ objectFit: "cover", borderRadius: "inherit" }}
+          onClick={() => onClick(id)}
         />
       </div>
       <div className="text-center text-white mt-4">
