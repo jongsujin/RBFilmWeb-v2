@@ -4,6 +4,8 @@ import Image from "next/image";
 import fetchPhotoItem from "@/api/fetchPhotoItem";
 import { PhotoDataItemProps } from "@/types/PhotoType";
 import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+import SkeletonPhotoItemTemplete from "./Skeleton/SkeletonPhotoItemTemplete";
 
 export default function PhotoItemTemplete({
   params,
@@ -11,13 +13,22 @@ export default function PhotoItemTemplete({
   params: { id: number };
 }) {
   console.log("Templeteid : ", params?.id);
-
+  const [, setShowSkeleton] = useState(true);
   const { data, isLoading } = useQuery<PhotoDataItemProps>({
     queryKey: ["fetchPhotoItem", params?.id],
     queryFn: () => fetchPhotoItem({ THEME: "Photo", id: params.id }),
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSkeleton(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) return <SkeletonPhotoItemTemplete />;
+
   return (
     <main className="w-full h-full flex flex-col justify-center items-center">
       {data && (
