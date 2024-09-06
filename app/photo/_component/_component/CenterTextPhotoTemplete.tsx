@@ -10,7 +10,7 @@ export default function CenterTextPhotoTemplate({
 }: PhotoTempleteProps) {
   return (
     <div className="w-[90%]  mx-auto flex flex-col items-center">
-      <div className="w-full relative pb-[58%] rounded-lg">
+      <div className="w-full relative aspect-[3/2] rounded-lg">
         <Image
           src={firstUrl}
           alt={subTitle}
