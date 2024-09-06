@@ -5,7 +5,6 @@ import DeskTopPhotoItem from "./_component/DeskTopPhotoItem";
 import PhotoItemTemplete from "../../_component/_component/PhotoItemTemplete";
 
 export default function PhotoItem({ params }: { params: { id: number } }) {
-  console.log("params sssId: ", params.id);
   return (
     <div>
       <div className="block lg:hidden">
@@ -18,7 +17,7 @@ export default function PhotoItem({ params }: { params: { id: number } }) {
         <PhotoItemTemplete params={params} />
       </div>
       <div className="hidden lg:block">
-        <DeskTopPhotoItem />
+        <DeskTopPhotoItem params={params} />
       </div>
       <div className="mt-72">
         <Footer />

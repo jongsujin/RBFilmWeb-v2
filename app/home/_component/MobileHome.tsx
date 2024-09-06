@@ -18,7 +18,6 @@ export default function MobileHome() {
     return <div>Loading...</div>;
   }
 
-  console.log("clientData :", clientData);
   return (
     <div className="w-full flex flex-col justify-center items-center text-center">
       <MobileHeader />

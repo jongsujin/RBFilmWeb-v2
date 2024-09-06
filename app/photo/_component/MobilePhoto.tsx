@@ -16,7 +16,6 @@ export default function MobilePhoto() {
     queryFn: () => fetchPhotoTheme("Photo"),
   });
 
-  console.log("photoData", photoData);
   if (isLoading) return <div>Loading...</div>;
   const handleClickPhotoItem = (id: number) => {
     router.push(`/photo/item/${id}`);

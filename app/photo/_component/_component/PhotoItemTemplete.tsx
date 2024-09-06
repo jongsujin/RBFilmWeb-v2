@@ -16,8 +16,7 @@ export default function PhotoItemTemplete({
     queryKey: ["fetchPhotoItem", params?.id],
     queryFn: () => fetchPhotoItem({ THEME: "Photo", id: params.id }),
   });
-  console.log("item data : ", data);
-  console.log(data?.photoDetailUrl?.map((item) => item));
+
   if (isLoading) return <div>Loading...</div>;
   return (
     <main className="w-full h-full flex flex-col justify-center items-center">

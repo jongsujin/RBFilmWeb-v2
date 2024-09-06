@@ -7,7 +7,7 @@ export interface SelectedThemeProps {
   setSelectedTheme: (theme: string) => void;
 }
 
-export const useStore = create<SelectedThemeProps>()(
+const useStore = create<SelectedThemeProps>()(
   persist(
     (set) => ({
       selectedTheme: "AfterMovieEventSketch",
@@ -18,3 +18,5 @@ export const useStore = create<SelectedThemeProps>()(
     },
   ),
 );
+
+export default useStore;

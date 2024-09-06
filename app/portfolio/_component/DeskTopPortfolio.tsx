@@ -36,7 +36,7 @@ export default function DeskTopPortfolio() {
       onClickItem(id);
     }
   };
-  console.log(data);
+
   if (isLoading) return <div>Loading...</div>;
   return (
     <div>

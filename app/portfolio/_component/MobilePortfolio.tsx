@@ -14,7 +14,7 @@ export default function MobilePortfolio() {
   const router = useRouter();
   const selectedTheme = useStore((state) => state.selectedTheme);
   const setSelectedTheme = useStore((state) => state.setSelectedTheme);
-  console.log("selectedTheme : ", selectedTheme);
+
   const { data, isLoading } = useQuery({
     queryKey: ["fetchPortfolioTheme", selectedTheme],
     queryFn: () => fetchPortfolioTheme(selectedTheme),
@@ -35,7 +35,7 @@ export default function MobilePortfolio() {
       onClickItem(id);
     }
   };
-  console.log(data);
+
   if (isLoading) return <div>Loading...</div>;
   return (
     <div>

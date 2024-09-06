@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import fetchPortfolioItem from "@/api/fetchPortfolioItem";
 import Link from "next/link";
 import { PortfolioItemProps } from "@/types/PortfolioType";
-import { useStore } from "@/store/useStore";
+import useStore from "@/store/useStore";
 import { useRouter } from "next/navigation";
 
 export default function MobilePortfolioItem({
@@ -19,12 +19,11 @@ export default function MobilePortfolioItem({
   const router = useRouter();
   const selectedTheme = useStore((state) => state.selectedTheme);
   const setSelectedTheme = useStore((state) => state.setSelectedTheme);
-  console.log("id : ", params.id);
+
   const { data, isLoading } = useQuery<PortfolioItemProps>({
     queryKey: ["fetchPortfolioItem", params.id],
     queryFn: () => fetchPortfolioItem({ THEME: "Interview", id: params.id }),
   });
-  console.log("item data : ", data);
 
   const onClickTheme = (theme: string) => {
     setSelectedTheme(theme);

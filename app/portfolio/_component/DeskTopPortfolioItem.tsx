@@ -23,13 +23,11 @@ export default function DeskTopPortfolioItem({
   const router = useRouter();
   const selectedTheme = useStore((state) => state.selectedTheme);
   const setSelectedTheme = useStore((state) => state.setSelectedTheme);
-  console.log("selectedTheme : ", selectedTheme);
+
   const { data, isLoading } = useQuery<PortfolioItemProps>({
     queryKey: ["fetchPortfolioItem", params.id],
     queryFn: () => fetchPortfolioItem({ THEME: selectedTheme, id: params.id }),
   });
-
-  console.log("item data : ", data);
 
   const onClickTheme = (theme: string) => {
     setSelectedTheme(theme);
