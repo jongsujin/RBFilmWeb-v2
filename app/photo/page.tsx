@@ -2,12 +2,16 @@
 import DeskTopFooter from "@/components/Footer/DeskTopFooter";
 import Footer from "@/components/Footer/Footer";
 import MobilePhoto from "./_component/MobilePhoto";
+import DeskTopPhoto from "./_component/DeskTopPhoto";
 
 export default function Photo() {
   return (
     <>
-      <div>
+      <div className="block lg:hidden">
         <MobilePhoto />
+      </div>
+      <div>
+        <DeskTopPhoto />
       </div>
       <div className="block lg:hidden">
         <Footer />

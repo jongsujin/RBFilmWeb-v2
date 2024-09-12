@@ -6,16 +6,22 @@ export default function DeskTopHeader() {
     <header className="w-full bg-white flex flex-row justify-around border-b border-black">
       <div className="w-[80%] py-7 flex flex-row ">
         <div className="flex-1 flex flex-row items-center gap-2">
-          <Image
-            src="/deskTopLogo.svg"
-            alt="Logo"
-            width={56}
-            height={36}
-            priority
-          />
-          <p className="mr-4 text-black text-headline2 leading-6 font-semibold">
-            R.B.FILM
-          </p>
+          <Link href="/">
+            <Image
+              className="cursor-pointer"
+              src="/deskTopLogo.svg"
+              alt="Logo"
+              width={56}
+              height={36}
+              priority
+            />
+          </Link>
+          <Link href="/">
+            <p className="mr-4 text-black text-headline2 leading-6 font-semibold cursor-pointer">
+              R.B.FILM
+            </p>
+          </Link>
+
           <button
             type="button"
             className="cursor-pointer flex flex-row rounded-3xl text-black bg-gray p-2 gap-1"

@@ -6,6 +6,7 @@ import MobileTab from "@/components/Tab/MobileTab";
 
 import { useGetMainFilm } from "@/hooks/useGetMainFilm";
 import { useGetClientData } from "@/hooks/useGetClientData";
+import Link from "next/link";
 import Carousel from "./Carousel";
 import ClienItem from "./ClientItem";
 import MainFilm from "./MainFilm";
@@ -169,12 +170,14 @@ export default function MobileHome() {
             </div>
           </div>
           <div className="flex justify-end mt-4">
-            <button
-              className="font-bai bg-black text-primary border border-primary rounded-2xl py-2 px-4 cursor-pointer"
-              type="button"
-            >
-              And More
-            </button>
+            <Link href="/portfolio">
+              <button
+                className="font-bai bg-black text-primary border border-primary rounded-2xl py-2 px-4 cursor-pointer"
+                type="button"
+              >
+                And More
+              </button>
+            </Link>
           </div>
         </section>
         <section className="relative flex justify-center mt-36 align-middle items-center">

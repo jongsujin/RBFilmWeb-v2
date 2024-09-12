@@ -19,7 +19,7 @@ export default function DeskTopService() {
           <div className="absolute top-0 right-0 left-0 bottom-10 flex justify-center items-center">
             <div className="w-[50%] flex flex-col gap-2">
               <div className="flex flex-row justify-center gap-2">
-                <div className="w-[40%] h-64 flex flex-col justify-center text-center items-center align-middle border border-white">
+                <div className="w-[40%] h-64 flex flex-col justify-center text-center items-center align-middle">
                   <p className="text-white text-[50px] font-bold">SERVICE</p>
                   <p className="text-white font-pre text-headline2 font-bold">
                     다양한 전문가 집단과 함께하고 있습니다.

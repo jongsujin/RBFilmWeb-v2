@@ -12,7 +12,6 @@ export default function PhotoItemTemplete({
 }: {
   params: { id: number };
 }) {
-  console.log("Templeteid : ", params?.id);
   const [, setShowSkeleton] = useState(true);
   const { data, isLoading } = useQuery<PhotoDataItemProps>({
     queryKey: ["fetchPhotoItem", params?.id],
@@ -32,7 +31,7 @@ export default function PhotoItemTemplete({
   return (
     <main className="w-full h-full flex flex-col justify-center items-center">
       {data && (
-        <section className="mt-16 w-4/5 h-full text-white text-center">
+        <section className="mt-16 w-4/5 h-full text-white text-center xl:w-3/5">
           <div className="font-pre">
             <p className="text-[24px] font-bold">{data.photoTitle}</p>
             <p className="text-[18px] font-medium">{data.photoSubTitle}</p>
