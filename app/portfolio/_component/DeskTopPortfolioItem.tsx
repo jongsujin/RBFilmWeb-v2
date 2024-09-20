@@ -116,7 +116,12 @@ export default function DeskTopPortfolioItem({
         <div className="mt-4 flex flex-col gap-2">
           <div className="border border-primary relative w-full pb-[56.25%] mt-14 overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full">
-              <ReactPlayer url={data?.url} width="100%" height="100%" />
+              <ReactPlayer
+                url={data?.url}
+                width="100%"
+                height="100%"
+                controls
+              />
             </div>
           </div>
           <div className="flex justify-around gap-5 w-full my-20">

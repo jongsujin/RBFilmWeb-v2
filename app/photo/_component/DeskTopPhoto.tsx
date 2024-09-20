@@ -28,7 +28,7 @@ export default function DeskTopPhoto() {
           Photo
         </p>
       </div>
-      <div className="flex flex-col gap-14 justify-center">
+      <div className="w-4/5 mx-auto flex flex-col gap-14 justify-center">
         {photoData?.DATA.map((item) => {
           if (item.textPosition === "left") {
             return (

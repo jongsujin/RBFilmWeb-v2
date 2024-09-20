@@ -10,7 +10,7 @@ export default function Photo() {
       <div className="block lg:hidden">
         <MobilePhoto />
       </div>
-      <div>
+      <div className="hidden lg:block">
         <DeskTopPhoto />
       </div>
       <div className="block lg:hidden">

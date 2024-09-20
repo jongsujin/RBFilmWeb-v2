@@ -115,7 +115,7 @@ export default function DeskTopPortfolio() {
           data.DATA.map((item: PortfolioItemProps) => (
             <div
               key={item.id}
-              className="border border-primary rounded relative w-full h-0 pb-[56.25%] overflow-hidden"
+              className="border border-primary rounded relative w-full aspect-video overflow-hidden"
               onClick={() => onClickItem(item.id)}
               onKeyDown={(event) => handleKeyDown(event, item.id)}
               role="button"
@@ -123,11 +123,10 @@ export default function DeskTopPortfolio() {
             >
               <Image
                 key={item.id}
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0"
                 src={item.imageUrl[0]}
                 alt="portfolio url"
-                width={100}
-                height={50}
+                fill
               />
               <div className="absolute inset-0 flex justify-center items-center">
                 <div className="cursor-pointer w-16 h-16 bg-white bg-opacity-75 rounded-full flex justify-center items-center border-none">
