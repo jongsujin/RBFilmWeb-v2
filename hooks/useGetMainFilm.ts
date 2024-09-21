@@ -1,6 +1,6 @@
 "use client";
 
-import fetchMainfilmData from "@/api/fetchMainFilmData";
+import fetchData from "@/api/fetchDataTHEME";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 
 export interface MainFilmDataProps {
@@ -11,7 +11,7 @@ export interface MainFilmDataProps {
 export function useGetMainFilm() {
   return useQuery<MainFilmDataProps, Error, MainFilmDataProps, QueryKey>({
     queryKey: ["mainFilmData"],
-    queryFn: () => fetchMainfilmData("Mainfilm"),
+    queryFn: () => fetchData("Mainfilm"),
     refetchOnWindowFocus: false,
     staleTime: Infinity, // 데이터가 만료되지 않도록 설정
   });

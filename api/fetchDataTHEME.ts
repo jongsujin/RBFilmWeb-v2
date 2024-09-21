@@ -1,4 +1,4 @@
-const fetchMainFilmData = async (THEME: string) => {
+const fetchData = async (THEME: string) => {
   // Next.js API로 GET 요청을 보냄, 쿼리 파라미터로 THEME 전달
   const res = await fetch(`/api/items?THEME=${THEME}`, {
     method: "GET",
@@ -13,4 +13,4 @@ const fetchMainFilmData = async (THEME: string) => {
   return data;
 };
 
-export default fetchMainFilmData;
+export default fetchData;

@@ -1,14 +1,18 @@
-import { FetchPortfolioItemProps } from "./fetchPortfolioItem";
+interface FetchPhotoItemProps {
+  THEME: string;
+  id: number;
+}
+const fecthPhotoItem = async ({ THEME, id }: FetchPhotoItemProps) => {
+  const res = await fetch(`/api/items/id?THEME=${THEME}?id=${id}`, {
+    method: "GET",
+  });
 
-const fetchPhotoItem = async ({ THEME, id }: FetchPortfolioItemProps) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_AWS_API_URL}/items/${THEME}/${id}`,
-  );
   if (!res.ok) {
     throw new Error(res.statusText);
   }
+
   const data = await res.json();
   return data;
 };
 
-export default fetchPhotoItem;
+export default fecthPhotoItem;
