@@ -1,6 +1,6 @@
 "use client";
 
-import fetchMainfilmData from "@/api/fetchMainFilmData";
+import fetchMainFilmData from "@/api/fetchMainFilmData";
 import { useQuery } from "@tanstack/react-query";
 
 export interface ClientItemProps {
@@ -8,6 +8,7 @@ export interface ClientItemProps {
   image_url: string;
   id: number;
 }
+
 export interface ClientDataProps {
   THEME: string;
   DATA: ClientItemProps[];
@@ -16,7 +17,7 @@ export interface ClientDataProps {
 export function useGetClientData() {
   return useQuery<ClientDataProps>({
     queryKey: ["clientData"],
-    queryFn: () => fetchMainfilmData("Client"),
+    queryFn: () => fetchMainFilmData("Client"),
     refetchOnWindowFocus: false,
   });
 }
