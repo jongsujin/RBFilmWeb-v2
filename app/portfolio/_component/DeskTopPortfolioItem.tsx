@@ -182,7 +182,7 @@ export default function DeskTopPortfolioItem({
           <div className="flex flex-row gap-2">
             {data && data.imageUrl.length > 1 && (
               <>
-                <div className="relative border border-white w-[40%] h-80">
+                <div className="relative border border-white w-[40%] aspect-video">
                   <Image
                     src={data?.imageUrl[1]}
                     alt="imageUrl[2]"
@@ -190,7 +190,7 @@ export default function DeskTopPortfolioItem({
                     layout="fill"
                   />
                 </div>
-                <div className="relative border border-white w-[60%] h-80">
+                <div className="relative border border-white w-[60%] aspect-video">
                   <Image
                     src={data?.imageUrl[2]}
                     alt="imageUrl[2]"

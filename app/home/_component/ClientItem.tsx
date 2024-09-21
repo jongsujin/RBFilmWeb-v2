@@ -5,17 +5,22 @@ interface ClientItemProps {
   url: string;
 }
 
-export default function ClienItem({ title, url }: ClientItemProps) {
+export default function ClientItem({ title, url }: ClientItemProps) {
   return (
-    <div className="border border-primary bg-white rounded-full flex flex-col w-16 h-16 items-center mb-12 lg:w-36 lg:h-36">
-      <Image
-        className="lg:w-36 lg:h-36"
-        src={url}
-        width={60}
-        height={60}
-        alt="고객사 사진"
-      />
-      <p className="mt-2 text-m text-white font-semibold">{title}</p>
+    <div className="flex flex-col items-center mb-12">
+      {/* 부모 div에 고정된 width와 height를 추가 */}
+      <div className="relative w-16 h-16 lg:w-36 lg:h-36 rounded-full overflow-hidden ">
+        <Image
+          // 이미지를 꽉 채우도록 설정
+          src={url}
+          alt="고객사 사진"
+          fill
+          objectFit="cover"
+        />
+      </div>
+      <p className="mt-2 text-sm lg:text-lg text-white font-semibold">
+        {title}
+      </p>
     </div>
   );
 }

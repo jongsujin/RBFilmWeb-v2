@@ -10,8 +10,8 @@ export default function LeftTextPhotoTemplate({
   onClick,
 }: PhotoTempleteProps) {
   return (
-    <div className="w-full mx-auto flex gap-2 p-5">
-      <div className="flex-1 relative h-0 pb-[67.08%] rounded-lg">
+    <div className="w-full  mx-auto flex gap-2 p-5">
+      <div className="flex-1 relative h-0 pb-[67.08%] rounded-lg lg:pb-[52%]">
         <Image
           src={firstUrl}
           alt={subTitle}

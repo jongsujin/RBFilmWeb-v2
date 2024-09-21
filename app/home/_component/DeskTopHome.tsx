@@ -18,6 +18,8 @@ export default function DeskTopHome() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  console.log("clientItem", clientData);
+  console.log("mainFilmData", mainFilmData);
   return (
     <div className="w-full flex flex-col justify-center items-center text-center">
       <DeskTopHeader />
@@ -349,11 +351,7 @@ export default function DeskTopHome() {
             {clientData &&
               clientData.DATA &&
               clientData.DATA.map((item) => (
-                <ClienItem
-                  key={item.id}
-                  title={item.title}
-                  url={item.image_url}
-                />
+                <ClienItem key={item.id} title={item.title} url="/gq.png" />
               ))}
           </div>
         </section>

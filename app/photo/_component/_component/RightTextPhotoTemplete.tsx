@@ -28,7 +28,7 @@ export default function RightTextPhotoTemplete({
         </div>
       </div>
       {secondUrl && (
-        <div className="flex-1 relative h-0 pb-[67.08%] rounded-lg">
+        <div className="flex-1 relative h-0 pb-[67.08%] rounded-lg lg:pb-[52%]">
           <Image
             src={secondUrl}
             alt={subTitle}

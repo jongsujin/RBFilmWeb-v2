@@ -20,7 +20,7 @@ export default function CenterTextPhotoTemplate({
           onClick={() => onClick(id)}
         />
       </div>
-      <div className="text-center text-white mt-4">
+      <div className="w-full text-center text-white mt-4 lg:text-left">
         <p className="font-pre font-bold text-headline3">{title}</p>
         <p className="font-pre font-medium text-lg">{subTitle}</p>
       </div>
