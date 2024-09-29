@@ -3,9 +3,10 @@
 import Image from "next/image";
 import DeskTopHeader from "@/components/Header/DeskTopHeader";
 import DeskTopBtnContainer from "@/components/Header/_component/DeskTopBtnContainer";
-
+import { useState } from "react";
 import { useGetMainFilm } from "@/hooks/useGetMainFilm";
 import { useGetClientData } from "@/hooks/useGetClientData";
+import BiographyData from "@/data/BiographyData";
 import MainFilm from "./MainFilm";
 import Carousel from "./Carousel";
 import ClienItem from "./ClientItem";
@@ -14,7 +15,11 @@ import YearTab from "./YearTab";
 export default function DeskTopHome() {
   const { data: mainFilmData, isLoading } = useGetMainFilm();
   const { data: clientData } = useGetClientData();
+  const [moreTab, setMoreTab] = useState(false);
 
+  const onClickMoreTab = () => {
+    setMoreTab(!moreTab);
+  };
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -357,11 +362,40 @@ export default function DeskTopHome() {
               ))}
           </div>
         </section>
-        <section className="mt-32">
+        <section className="mt-32 max-w-[60%] mx-auto">
           <p className="font-robotoSlab text-primary text-[55px] font-extrabold">
             Biography
           </p>
           <YearTab years={[2022, 2023, 2024]} />
+          <Carousel />
+          <p className="font-pre text-[28px] leading-6 font-semibold text-primary mt-14">
+            2023
+          </p>
+          <div className="font-pre font-medium text-body leading-4 my-14 text-white">
+            {BiographyData &&
+              BiographyData.slice(0, 10).map((item) => (
+                <div key={item.id}>
+                  <p className="pt-6">{item.title}</p>
+                </div>
+              ))}
+            {moreTab && (
+              <div className="mt-5">
+                {BiographyData &&
+                  BiographyData.slice(11).map((item) => (
+                    <div key={item.id}>
+                      <p className="pt-6">{item.title}</p>
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
+          <button
+            className="font-bai bg-black text-primary border border-primary rounded-2xl py-2 px-4 cursor-pointer"
+            type="button"
+            onClick={onClickMoreTab}
+          >
+            {moreTab ? "Close" : "And More"}
+          </button>
         </section>
       </main>
     </div>

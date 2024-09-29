@@ -3,18 +3,24 @@
 import Image from "next/image";
 import MobileHeader from "@/components/Header/MobileHeader";
 import MobileTab from "@/components/Tab/MobileTab";
-
+import { useState } from "react";
 import { useGetMainFilm } from "@/hooks/useGetMainFilm";
 import { useGetClientData } from "@/hooks/useGetClientData";
 import Link from "next/link";
+import BiographyData from "@/data/BiographyData";
 import Carousel from "./Carousel";
 import ClienItem from "./ClientItem";
 import MainFilm from "./MainFilm";
+import YearTab from "./YearTab";
 
 export default function MobileHome() {
   const { data: mainFilmData, isLoading } = useGetMainFilm();
   const { data: clientData } = useGetClientData();
+  const [moreTab, setMoreTab] = useState(false);
 
+  const onClickMoreTab = () => {
+    setMoreTab(!moreTab);
+  };
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -349,14 +355,40 @@ export default function MobileHome() {
               ))}
           </div>
         </section>
-        <section className="mt-32">
-          <p className="text-lightPrimary text-[55px] font-extrabold">
+        <section className="mt-32 max-w-full mx-auto">
+          <p className="font-pre text-primary text-[55px] font-extrabold">
             Biography
           </p>
-          <p className="text-lightPrimary text-headline1 font-extrabold">
-            연혁
-          </p>
+          <YearTab years={[2022, 2023, 2024]} />
           <Carousel />
+          <p className="font-pre text-headline1 leading-4 font-semibold text-primary mt-14">
+            2023
+          </p>
+          <div className="max-w-[90%] mx-auto font-pre font-medium text-lg leading-4 my-14 text-white">
+            {BiographyData &&
+              BiographyData.slice(0, 10).map((item) => (
+                <div key={item.id}>
+                  <p className="pt-6">{item.title}</p>
+                </div>
+              ))}
+            {moreTab && (
+              <div className="mt-5">
+                {BiographyData &&
+                  BiographyData.slice(11).map((item) => (
+                    <div key={item.id}>
+                      <p className="pt-6">{item.title}</p>
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
+          <button
+            className="font-bai bg-black text-primary border border-primary rounded-2xl py-2 px-4 cursor-pointer"
+            type="button"
+            onClick={onClickMoreTab}
+          >
+            {moreTab ? "Close" : "And More"}
+          </button>
         </section>
       </main>
     </div>

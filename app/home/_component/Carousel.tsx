@@ -73,7 +73,7 @@ export default function Carousel() {
         {slides.map((slide, index) => (
           <div key={slide.id} className="px-4">
             <div className={`transition-all duration-300 ${slideClass(index)}`}>
-              <div className="relative aspect-[16/9] rounded-lg border border-primary overflow-hidden">
+              <div className="relative aspect-[3/2] rounded-lg border border-primary overflow-hidden">
                 <Image
                   src={slide.image}
                   alt={`Slide ${slide.id}`}

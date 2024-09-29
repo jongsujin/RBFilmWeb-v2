@@ -10,13 +10,13 @@ export default function YearTab({ years }: YearTabProps) {
   const [selectedYear, setSelectedYear] = useState(2023);
 
   return (
-    <div className="flex justify-center items-center mb-12 space-x-4">
+    <div className="flex justify-center items-center mb-12">
       {years.map((year, index) => (
         <div key={year} className="flex items-center">
-          {index > 0 && <div className="w-8 h-px bg-primary" />}
+          {index > 0 && <div className="w-20 h-px bg-primary" />}
           <button
             type="button"
-            className={`flex justify-center items-center w-16 h-16 rounded-full border border-primary cursor-pointer ${
+            className={`flex justify-center items-center px-4 py-2 rounded-full border border-primary cursor-pointer ${
               selectedYear === year
                 ? "bg-primary text-dark"
                 : "bg-transparent text-primary"
