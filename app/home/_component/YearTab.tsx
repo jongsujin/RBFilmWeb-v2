@@ -1,14 +1,15 @@
-"use client";
-
-import { useState } from "react";
-
 interface YearTabProps {
   years: number[];
+  selectedYear: number;
+  // eslint-disable-next-line no-unused-vars
+  setSelectedYear: (year: number) => void;
 }
 
-export default function YearTab({ years }: YearTabProps) {
-  const [selectedYear, setSelectedYear] = useState(2023);
-
+export default function YearTab({
+  years,
+  selectedYear,
+  setSelectedYear,
+}: YearTabProps) {
   return (
     <div className="flex justify-center items-center mb-12">
       {years.map((year, index) => (
