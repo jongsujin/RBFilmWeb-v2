@@ -15,6 +15,7 @@ import YearTab from "./YearTab";
 export default function DeskTopHome() {
   const { data: mainFilmData, isLoading } = useGetMainFilm();
   const { data: clientData } = useGetClientData();
+  const [selectedYear, setSelectedYear] = useState(2024);
   const [moreTab, setMoreTab] = useState(false);
 
   const onClickMoreTab = () => {
@@ -366,26 +367,34 @@ export default function DeskTopHome() {
           <p className="font-robotoSlab text-primary text-[55px] font-extrabold">
             Biography
           </p>
-          <YearTab years={[2022, 2023, 2024]} />
+          <YearTab
+            years={[2022, 2023, 2024]}
+            selectedYear={selectedYear}
+            setSelectedYear={setSelectedYear}
+          />
           <Carousel />
           <p className="font-pre text-[28px] leading-6 font-semibold text-primary mt-14">
-            2023
+            {selectedYear}
           </p>
           <div className="font-pre font-medium text-body leading-4 my-14 text-white">
             {BiographyData &&
-              BiographyData.slice(0, 10).map((item) => (
-                <div key={item.id}>
-                  <p className="pt-6">{item.title}</p>
-                </div>
-              ))}
+              BiographyData.filter((item) => item.year === selectedYear)
+                .slice(0, 10)
+                .map((item) => (
+                  <div key={item.id}>
+                    <p className="pt-6">{item.title}</p>
+                  </div>
+                ))}
             {moreTab && (
               <div className="mt-5">
                 {BiographyData &&
-                  BiographyData.slice(11).map((item) => (
-                    <div key={item.id}>
-                      <p className="pt-6">{item.title}</p>
-                    </div>
-                  ))}
+                  BiographyData.filter((item) => item.year === selectedYear)
+                    .slice(11)
+                    .map((item) => (
+                      <div key={item.id}>
+                        <p className="pt-6">{item.title}</p>
+                      </div>
+                    ))}
               </div>
             )}
           </div>
